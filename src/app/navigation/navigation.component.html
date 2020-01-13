@@ -1,0 +1,16 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
+        <mat-list role="list">
+            <mat-list-item role="listitem">My Account</mat-list-item>
+            <mat-list-item role="listitem">Browse</mat-list-item>
+            <mat-list-item role="listitem">My Playlists</mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <p><button mat-button (click)="sidenav.toggle()"><i class="material-icons">dehaze</i></button></p>
+            Playlister
+        </mat-toolbar>
+    </mat-sidenav-content>
+</mat-sidenav-container>
