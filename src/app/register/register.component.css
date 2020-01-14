@@ -1,0 +1,20 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.example-card {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.example-actions {
+    text-align: right;
+}
