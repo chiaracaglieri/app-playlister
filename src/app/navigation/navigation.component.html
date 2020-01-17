@@ -1,7 +1,7 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
         <mat-list role="list">
-            <mat-list-item role="listitem">My Account</mat-list-item>
+            <mat-list-item role="listitem" [routerLink]="'/account'">My Account</mat-list-item>
             <mat-list-item role="listitem">Browse</mat-list-item>
             <mat-list-item role="listitem">My Playlists</mat-list-item>
         </mat-list>
@@ -13,4 +13,5 @@
             Playlister
         </mat-toolbar>
     </mat-sidenav-content>
+    aaaaaaaaaaaaaaaa
 </mat-sidenav-container>
