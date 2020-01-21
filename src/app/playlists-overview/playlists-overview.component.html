@@ -1,0 +1,20 @@
+<div class="main-container">
+    <span class="header"> My playlists </span>
+
+    <mat-grid-list cols="5">
+        <mat-grid-tile *ngFor="let playlist of userPlaylists">
+            <mat-card class="playlist-card">
+                <mat-card-title>
+                    {{playlist.name}}
+                </mat-card-title>
+                <mat-card-content>
+                    abcde
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">play_arrow</mat-icon>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div>

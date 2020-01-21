@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   events: string[] = [];
-  opened: boolean;
+  opened: boolean = false;
 
   constructor(private router: Router) { }
 
+  toggleDrawer() {
+    this.opened = !this.opened;
+  }
   ngOnInit() {
   }
 

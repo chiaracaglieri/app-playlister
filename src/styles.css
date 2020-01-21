@@ -11,3 +11,31 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+/*Text*/
+
+.header {
+    font-size: 30px;
+}
+
+
+/*container*/
+
+.main-container {
+    padding: 3%;
+}
+
+
+/*Cards*/
+
+.playlist-card {
+    width: 80%;
+}
+
+
+/*Drawer*/
+
+.nav-drawer {
+    width: 20%;
+}

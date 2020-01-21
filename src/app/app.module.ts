@@ -15,6 +15,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
+import { PlaylistsOverviewComponent } from './playlists-overview/playlists-overview.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { AccountOverviewComponent } from './account-overview/account-overview.co
     RegisterComponent,
     DashboardComponent,
     LoginComponent,
-    AccountOverviewComponent
+    AccountOverviewComponent,
+    PlaylistsOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import { AccountOverviewComponent } from './account-overview/account-overview.co
     MatButtonModule,
     MatListModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
