@@ -1,12 +1,13 @@
 <mat-card class="example-card">
     <mat-card-title>Log in</mat-card-title>
     <mat-card-content>
-        <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="E-mail" formControlName="email">
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Password" type="password" formControlName="password">
+                <span *ngIf="loginError">Error: credentials invalid!</span> <!--FIXME-->
             </mat-form-field>
             <div class="example-actions">
                 <button mat-flat-button color="primary" type="submit">Log in</button>
