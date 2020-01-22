@@ -1,17 +1,17 @@
 <mat-card class="example-card">
     <mat-card-title>Log in</mat-card-title>
     <mat-card-content>
-        <form class="example-form">
+        <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="E-mail">
+                <input matInput placeholder="E-mail" formControlName="email">
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" type="password">
+                <input matInput placeholder="Password" type="password" formControlName="password">
             </mat-form-field>
+            <div class="example-actions">
+                <button mat-flat-button color="primary" type="submit">Log in</button>
+                <button mat-button color="primary" (click)="loadRegister();">Register</button>
+            </div>
         </form>
     </mat-card-content>
-    <mat-card-actions class="example-actions">
-        <button mat-flat-button color="primary" (click)="loadDashboard();">Log in</button>
-        <button mat-button color="primary" (click)="loadRegister();">Register</button>
-    </mat-card-actions>
 </mat-card>
