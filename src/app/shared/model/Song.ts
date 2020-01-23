@@ -1,10 +1,10 @@
 export class Song {
-  artistName: string;
-  trackId: string;
-  trackName: string;
+  artist_name: string;
+  track_id: string;
+  track_name: string;
   acousticness: number;
   danceability: number;
-  durationMs: number;
+  duration_ms: number;
   energy: number;
   genre: string;
   instrumentalness: number;

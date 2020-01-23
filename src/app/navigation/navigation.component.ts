@@ -9,13 +9,17 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
-
+  activeTab = 1;
   constructor(private router: Router) { }
 
   toggleDrawer() {
     this.opened = !this.opened;
   }
   ngOnInit() {
+  }
+
+  setActiveTab(num: number){
+    this.activeTab = num;
   }
 
 }

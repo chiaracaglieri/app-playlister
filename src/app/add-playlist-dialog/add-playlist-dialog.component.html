@@ -1,0 +1,14 @@
+<form class="example-form" [formGroup]="addPlaylistForm" (ngSubmit)="onSubmit(addPlaylistForm)">
+    <mat-card-title>Create new playlist</mat-card-title>
+    <mat-form-field>
+        <input matInput placeholder="Playlist title" formControlName="name">
+    </mat-form-field>
+    <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" type="password" formControlName="password">
+        <span *ngIf="loginError">Error: credentials invalid!</span>
+    </mat-form-field> -->
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Create</button>
+        <button mat-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</form>
