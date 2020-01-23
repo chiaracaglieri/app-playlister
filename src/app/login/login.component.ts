@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
+import { User } from '../shared/model/User';
 
 @Component({
   selector: 'app-login',
@@ -23,19 +24,20 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginData: FormGroup ){
-    let loginResponse;
+    
     this.userService.loadUserDetail(loginData.get("email").value, loginData.get("password").value).subscribe(
       (response) => {
-        if(response.status == 200){
+        if(response.status === 200){
           this.loginError = false;
+          let json: JSON = response.body;
+          this.userService.loggedUser = json['data'];
           this.router.navigateByUrl('/dashboard');
         } else {
           this.loginError = true;
         }
       }
     );
-    
-    
+
   }
 
   loadRegister(){
