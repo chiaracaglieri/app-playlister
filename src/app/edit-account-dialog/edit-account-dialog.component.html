@@ -1,0 +1,31 @@
+<form class="example-form" [formGroup]="editAccountForm" (ngSubmit)="onSubmit(editAccountForm)">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="E-mail" [(ngModel)]="this.userService.loggedUser.email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Birthday" [(ngModel)]="this.userService.loggedUser.birthday" formControlName="birthday" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" [(ngModel)]="this.userService.loggedUser.gender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.displayedValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="region" [(ngModel)]="this.userService.loggedUser.region" required>
+            <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
+                {{country.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Submit</button>
+        <button mat-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</form>

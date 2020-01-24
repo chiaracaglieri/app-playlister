@@ -25,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
+import { EditAccountDialogComponent } from './edit-account-dialog/edit-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatNativeDateModule} from '@angular/material';
     LoginComponent,
     AccountOverviewComponent,
     PlaylistsOverviewComponent,
-    AddPlaylistDialogComponent
+    AddPlaylistDialogComponent,
+    EditAccountDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import {MatNativeDateModule} from '@angular/material';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  entryComponents: [AddPlaylistDialogComponent],
+  entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
