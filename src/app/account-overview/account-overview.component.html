@@ -1,0 +1,19 @@
+<div class="main-container">
+    <span class="header"> Welcome, {{ this.userService.loggedUser.email }} !</span>
+    <hr>
+    <span class="sub-header"> Account information</span>
+    <mat-list role="list">
+        <mat-list-item role="listitem">Account type: {{ this.userService.loggedUser.role }}</mat-list-item>
+        <br>
+        <mat-list-item role="listitem">E-mail: {{ this.userService.loggedUser.email }}</mat-list-item>
+        <mat-list-item role="listitem">Password: ********</mat-list-item>
+        <mat-list-item role="listitem">Birthday: {{ this.userService.loggedUser.birthday }}</mat-list-item>
+        <mat-list-item role="listitem">Gender: {{ this.userService.loggedUser.gender }}</mat-list-item>
+        <mat-list-item role="listitem">Region: {{ this.userService.loggedUser.region }}</mat-list-item>
+    </mat-list>
+
+    <div class="example-actions">
+        <button mat-flat-button color="primary" (click)="logOut()">Log out</button>
+        <button mat-button color="warn">Delete account</button>
+    </div>
+</div>

@@ -7,19 +7,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  mockUser: User;
+  loggedUser: User;
 
   baseUrl = "https://playlister-project.herokuapp.com/";
   constructor(private http: HttpClient) { }
 
   getPlaylists(): Playlist[]{
-    return [
-      {name: "playlist1"}, {name: "playlist2"}
-    ];
+    return this.loggedUser.playlists;
   }
 
   loadUserDetail(email: String, password: String){
     let request = this.baseUrl + "userManager/login?email=" + email + "&password=" + password;
-    return this.http.get(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {observe: 'response'});
   }
 }

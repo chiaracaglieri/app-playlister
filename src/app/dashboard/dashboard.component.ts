@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) {
+    if(this.userService.loggedUser == null){
+      this.router.navigateByUrl('/login');
+    } else if(this.userService.loggedUser.role === "ADMIN"){
+      console.log("admin");
+    }
+   }
 
   ngOnInit() {
   }

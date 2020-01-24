@@ -20,6 +20,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddPlaylistDialogComponent } from './add-playlist-dialog/add-playlist-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     LoginComponent,
     AccountOverviewComponent,
-    PlaylistsOverviewComponent
+    PlaylistsOverviewComponent,
+    AddPlaylistDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +51,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
+  entryComponents: [AddPlaylistDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
