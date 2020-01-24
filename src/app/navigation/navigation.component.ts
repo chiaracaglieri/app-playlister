@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +11,7 @@ export class NavigationComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
   activeTab = 1;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   toggleDrawer() {
     this.opened = !this.opened;

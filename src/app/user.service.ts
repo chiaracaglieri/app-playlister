@@ -46,16 +46,20 @@ export class UserService {
     return this.http.post<JSON>(request, user, {observe: 'response'});
   }
 
-  updateUser(editAccountData: FormGroup){
-    let request = this.baseUrl + "userManager/updateUser?email="+editAccountData.get("email").value;
+  updateUser(accountData: FormGroup){
+    let request = this.baseUrl + "userManager/updateUser?email="+this.loggedUser.email;
     let user: User = new User();
-    let pipe = new DatePipe(this.locale); // Use your own locale
-    let formattedDate = pipe.transform(editAccountData.get("birthday").value, 'yyyy-MM-dd');
-
-    user.email = editAccountData.get("email").value;
-    user.birthday = formattedDate;
-    user.gender = editAccountData.get("gender").value;
-    user.region = editAccountData.get("region").value;
+    if(accountData.get("newPassword").value!=null){
+      user.password = accountData.get("newPassword").value;
+    } else {
+      let pipe = new DatePipe(this.locale); // Use your own locale
+      let formattedDate = pipe.transform(accountData.get("birthday").value, 'yyyy-MM-dd');
+  
+      user.email = accountData.get("email").value;
+      user.birthday = formattedDate;
+      user.gender = accountData.get("gender").value;
+      user.region = accountData.get("region").value;
+    }
 
     return this.http.put<JSON>(request, user, {observe: 'response'});
   }
