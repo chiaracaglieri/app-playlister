@@ -3,31 +3,32 @@
     <mat-card-content>
         <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="E-mail" formControlName="email">
+                <input matInput placeholder="E-mail" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" type="password" formControlName="password">
+                <input matInput placeholder="Password" type="password" formControlName="password" required>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Confirm Password" type="password" formControlName="passwordConfirm">
+                <input matInput placeholder="Confirm Password" type="password" formControlName="passwordConfirm" required>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
+                <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Gender</mat-label>
-                <mat-select formControlName="gender">
-                    <mat-option *ngFor="let gender of genders" [value]="gender">
-                        {{gender}}
+                <mat-select formControlName="gender" required>
+                    <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                        {{gender.displayedValue}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Country</mat-label>
-                <mat-select formControlName="region">
-                    <mat-option *ngFor="let country of countries.regions" [value]="country.value">
+                <mat-select formControlName="region" required>
+                    <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
                         {{country.viewValue}}
                     </mat-option>
                 </mat-select>

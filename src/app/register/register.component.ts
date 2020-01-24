@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Region } from '../shared/model/Region';
 
@@ -11,13 +11,19 @@ import { Region } from '../shared/model/Region';
 })
 export class RegisterComponent implements OnInit {
 
-  genders = [ "Female", "Male", "Other"];
+  genders = [ 
+    {value:"FEMALE", displayedValue:"Female"}, 
+    {value:"MALE", displayedValue:"Male" }, 
+    {value:"OTHER", displayedValue:"Other"}];
+    
   countries: Region = new Region();
   registerForm: FormGroup ;
 
+  email = new FormControl('', [Validators.required, Validators.email]);
+  
   constructor(private router: Router,private formBuilder: FormBuilder, private userService: UserService) {
     this.registerForm = this.formBuilder.group({
-      email: '',
+      email: this.email,
       password: '',
       passwordConfirm: '',
       birthday: '',
@@ -25,6 +31,12 @@ export class RegisterComponent implements OnInit {
       region: ''
     });
    }
+
+   getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+        this.email.hasError('email') ? 'Not a valid email' :
+            '';
+  }
 
   ngOnInit() {
   }
@@ -34,18 +46,17 @@ export class RegisterComponent implements OnInit {
     if(registerData.get("password").value!=registerData.get("passwordConfirm").value){
       console.log("passwords dont match");
     }
-    // this.userService.loadUserDetail(loginData.get("email").value, loginData.get("password").value).subscribe(
-    //   (response) => {
-    //     if(response.status === 200){
-    //       this.loginError = false;
-    //       let json: JSON = response.body;
-    //       this.userService.loggedUser = json['data'];
-    //       this.router.navigateByUrl('/dashboard');
-    //     } else {
-    //       this.loginError = true;
-    //     }
-    //   }
-    // );
+   this.userService.createUser(registerData).subscribe(
+      (response) => {
+        if(response.status === 201){
+           let json: JSON = response.body;
+           this.userService.loggedUser = json['data'];
+           this.router.navigateByUrl('/dashboard');
+        } else {
+
+        }
+      }
+    );
 
   }
 
