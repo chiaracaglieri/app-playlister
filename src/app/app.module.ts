@@ -35,6 +35,9 @@ import { SongDetailComponent } from './song-detail/song-detail.component';
 import { DeletePlaylistAlertComponent } from './delete-playlist-alert/delete-playlist-alert.component';
 import { SongDetailDialogComponent } from './song-detail-dialog/song-detail-dialog.component';
 import { EditPlaylistDialogComponent } from './edit-playlist-dialog/edit-playlist-dialog.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AddSongDialogComponent } from './add-song-dialog/add-song-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { EditPlaylistDialogComponent } from './edit-playlist-dialog/edit-playlis
     SongDetailComponent,
     DeletePlaylistAlertComponent,
     SongDetailDialogComponent,
-    EditPlaylistDialogComponent
+    EditPlaylistDialogComponent,
+    AdminDashboardComponent,
+    AddSongDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,10 +80,12 @@ import { EditPlaylistDialogComponent } from './edit-playlist-dialog/edit-playlis
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ],
   entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
-    DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent],
+    DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent,
+    AddSongDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

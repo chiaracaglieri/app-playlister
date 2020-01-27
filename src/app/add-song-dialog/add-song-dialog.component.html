@@ -1,0 +1,74 @@
+<span class="header">Add Song</span>
+<form class="example-form" [formGroup]="addSongForm" (ngSubmit)="onSubmit(addSongForm)">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Track name" formControlName="track_name" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Artist name" formControlName="artist_name" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Duration(ms)" type="number" formControlName="duration_ms" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Genre</mat-label>
+        <mat-select formControlName="genre">
+            <mat-option *ngFor="let genre of genres" [value]="genre">
+                {{genre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Acousticness" type="number" formControlName="acousticness" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Danceability" type="number" formControlName="danceability" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Energy" type="number" formControlName="energy" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Instrumentalness" type="number" formControlName="instrumentalness" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Liveness" type="number" formControlName="liveness" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Loudness" type="number" formControlName="loudness" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Speechiness" type="number" formControlName="speechiness" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Tempo" type="number" formControlName="tempo" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Valence" type="number" formControlName="valence" required>
+    </mat-form-field>
+    <!--     
+    <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender.displayedValue">
+                {{gender.displayedValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="region" required>
+            <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
+                {{country.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit">Register</button>
+        <button mat-button color="primary" (click)="loadLogin();">Log in</button>
+    </div>
+</form>
