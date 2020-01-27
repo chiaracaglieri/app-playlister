@@ -1,8 +1,8 @@
-<div class="main-container">
+<div class="main-container" *ngIf="overview">
     <span class="header"> My playlists </span>
 
     <mat-grid-list cols="5">
-        <mat-grid-tile *ngFor="let playlist of userPlaylists">
+        <mat-grid-tile *ngFor="let playlist of userService.loggedUser.playlists" (click)="openPlaylistDetail(playlist)">
             <mat-card class="playlist-card">
                 <mat-card-title>
                     {{playlist.name}}
@@ -16,8 +16,12 @@
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
-
+    <span class="header"> Your most listened to artist is: {{ topArtist }} </span>
     <div class="fab-container">
         <button mat-fab color="primary" (click)="openAddPlaylistDialog()"><mat-icon>add</mat-icon></button>
     </div>
+</div>
+
+<div class="main-container" *ngIf="!overview">
+    <app-playlist-detail [playlist]="selectedPlaylist"></app-playlist-detail>
 </div>

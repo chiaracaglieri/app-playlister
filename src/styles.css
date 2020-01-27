@@ -71,3 +71,13 @@ body {
 .example-actions {
     text-align: right;
 }
+
+/*Tables*/
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

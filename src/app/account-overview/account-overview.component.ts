@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { EditAccountDialogComponent } from '../edit-account-dialog/edit-account-dialog.component';
 import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
+import { DeleteAccountAlertComponent } from '../delete-account-alert/delete-account-alert.component';
 
 @Component({
   selector: 'app-account-overview',
@@ -28,6 +29,11 @@ export class AccountOverviewComponent implements OnInit {
   }
   openChangePasswordDialog(){
     const dialogRef = this.dialog.open(ChangePasswordDialogComponent, {
+      width: '400px'
+    });
+  }
+  openDeleteAccountAlert(){
+    const dialogRef = this.dialog.open(DeleteAccountAlertComponent, {
       width: '400px'
     });
   }

@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 export class NavigationComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
-  activeTab = 1;
+  activeTab = 3;
   constructor(private router: Router, private userService: UserService) { }
 
   toggleDrawer() {

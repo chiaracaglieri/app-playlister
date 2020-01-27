@@ -1,0 +1,9 @@
+<form class="example-form" [formGroup]="editPlaylistForm" (ngSubmit)="onSubmit(editPlaylistForm)">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Title" [(ngModel)]="this.data.playlist.name" [formControl]="name" required>
+    </mat-form-field>
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Submit</button>
+        <button mat-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</form>

@@ -63,4 +63,9 @@ export class UserService {
 
     return this.http.put<JSON>(request, user, {observe: 'response'});
   }
+
+  deleteUser() {
+    let request = this.baseUrl + "userManager/deleteUser?email="+this.loggedUser.email;
+    return this.http.delete<JSON>(request, {observe: 'response'});
+  }
 }

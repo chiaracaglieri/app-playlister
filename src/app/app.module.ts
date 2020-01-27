@@ -27,6 +27,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import { EditAccountDialogComponent } from './edit-account-dialog/edit-account-dialog.component';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
+import { DeleteAccountAlertComponent } from './delete-account-alert/delete-account-alert.component';
+import { BrowseOverviewComponent } from './browse-overview/browse-overview.component';
+import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
+import {MatTableModule} from '@angular/material/table';
+import { SongDetailComponent } from './song-detail/song-detail.component';
+import { DeletePlaylistAlertComponent } from './delete-playlist-alert/delete-playlist-alert.component';
+import { SongDetailDialogComponent } from './song-detail-dialog/song-detail-dialog.component';
+import { EditPlaylistDialogComponent } from './edit-playlist-dialog/edit-playlist-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +47,14 @@ import { ChangePasswordDialogComponent } from './change-password-dialog/change-p
     PlaylistsOverviewComponent,
     AddPlaylistDialogComponent,
     EditAccountDialogComponent,
-    ChangePasswordDialogComponent
+    ChangePasswordDialogComponent,
+    DeleteAccountAlertComponent,
+    BrowseOverviewComponent,
+    PlaylistDetailComponent,
+    SongDetailComponent,
+    DeletePlaylistAlertComponent,
+    SongDetailDialogComponent,
+    EditPlaylistDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +74,11 @@ import { ChangePasswordDialogComponent } from './change-password-dialog/change-p
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ],
-  entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent],
+  entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
+    DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,33 @@
+<div class="main-container">
+    <!-- <form class="example-form" [formGroup]="searchForm">
+        <input type="search" placeholder="Search..." [formControlName]="search"  (keyup.enter)="onEnter()" >
+    </form> -->
+    <span class="header">Suggested for you</span>
+    <br>
+    <mat-grid-list cols="5" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let song of suggestedSongsList">
+            <mat-card class="playlist-card" (click)="openSongDetailDialog(song)">
+                <mat-card-content>
+                    <b>{{ song.track_name }}</b> - {{ song.artist_name }}
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <span class="header">Explore</span>
+    <div class="example-actions">
+        <button mat-icon-button (click)="refreshExploreSongs()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+    <mat-grid-list cols="5" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let song of exploreSongsList">
+            <mat-card class="playlist-card" (click)="openSongDetailDialog(song)">
+                <mat-card-content>
+                    <b>{{ song.track_name }}</b> - {{ song.artist_name }}
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <br>
+</div>

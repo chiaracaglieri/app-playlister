@@ -1,23 +1,20 @@
 <mat-drawer-container class="example-container">
     <mat-drawer mode="side" [(opened)]="opened" class="nav-drawer">
         <mat-list role="list" *ngIf="this.userService.loggedUser.role==='USER'">
-            <mat-list-item role="listitem" (click)="setActiveTab(1)">Dashboard</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(2)">My Account</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(3)">Browse</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(4)">My Playlists</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(1)">My Account</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(2)">Browse</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(3)">My Playlists</mat-list-item>
         </mat-list>
         <mat-list role="list" *ngIf="this.userService.loggedUser.role==='ADMIN'">
-            <mat-list-item role="listitem" (click)="setActiveTab(1)">Dashboard</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(2)">My Account</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(3)">Browse</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(4)">My Playlists</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(5)">Analytics</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(6)">Admin Console</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(1)">My Account</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(2)">Browse</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(3)">My Playlists</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(4)">Analytics</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(5)">Admin Console</mat-list-item>
         </mat-list>
         <mat-list role="list" *ngIf="this.userService.loggedUser.role==='SUPERUSER'">
-            <mat-list-item role="listitem" (click)="setActiveTab(1)">Dashboard</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(2)">My Account</mat-list-item>
-            <mat-list-item role="listitem" (click)="setActiveTab(5)">Analytics</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(1)">My Account</mat-list-item>
+            <mat-list-item role="listitem" (click)="setActiveTab(4)">Analytics</mat-list-item>
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
@@ -25,12 +22,14 @@
             <p><button mat-button (click)="toggleDrawer()"><i class="material-icons">dehaze</i></button></p>
             Playlister
         </mat-toolbar>
-        <!-- <app-playlists-overview></app-playlists-overview> -->
-        <div *ngIf="activeTab==2">
+        <div *ngIf="activeTab==1">
             <app-account-overview></app-account-overview>
         </div>
-        <div *ngIf="activeTab==4">
+        <div *ngIf="activeTab==3">
             <app-playlists-overview></app-playlists-overview>
+        </div>
+        <div *ngIf="activeTab==2">
+            <app-browse-overview></app-browse-overview>
         </div>
     </mat-drawer-content>
     <button mat-fab></button>

@@ -1,0 +1,49 @@
+<div class="header"> 
+    {{ playlist.name }}
+    <button mat-icon-button (click)="openEditPlaylistDialog()">
+      <mat-icon>edit</mat-icon>
+  </button>
+
+<div class="example-actions">
+    <button mat-button color="primary" (click)="goBack()">Back</button>
+</div>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Song">
+      <th mat-header-cell *matHeaderCellDef> Song </th>
+      <td mat-cell *matCellDef="let song"> {{song.track_name}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="Artist">
+      <th mat-header-cell *matHeaderCellDef> Artist </th>
+      <td mat-cell *matCellDef="let song"> {{song.artist_name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Duration">
+      <th mat-header-cell *matHeaderCellDef> Duration </th>
+      <td mat-cell *matCellDef="let song"> {{this.millisToMinutesAndSeconds(song.duration_ms)}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container> -->
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="fab-container">
+    <button mat-fab color="primary"><mat-icon>add</mat-icon></button>
+</div>
+<br>
+<button mat-button color="warn" (click)="openDeletePlaylistAlert()">Delete playlist</button>
