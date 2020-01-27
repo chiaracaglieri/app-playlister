@@ -27,6 +27,7 @@ export class BrowseOverviewComponent implements OnInit {
         if (response.status === 200) {
           let json: JSON = response.body;
           this.suggestedSongsList = json['data'];
+          this.refreshExploreSongs();
         }
         else {
 
@@ -34,7 +35,7 @@ export class BrowseOverviewComponent implements OnInit {
       }
     );
 
-    this.refreshExploreSongs();
+    
 
   }
 
