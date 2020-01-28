@@ -40,6 +40,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AddSongDialogComponent } from './add-song-dialog/add-song-dialog.component';
 import { GetSongDialogComponent } from './get-song-dialog/get-song-dialog.component';
 import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dialog.component';
+import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
+import { ChangeUserRoleDialogComponent } from './change-user-role-dialog/change-user-role-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dial
     AdminDashboardComponent,
     AddSongDialogComponent,
     GetSongDialogComponent,
-    DeleteSongDialogComponent
+    DeleteSongDialogComponent,
+    DeleteUserDialogComponent,
+    ChangeUserRoleDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,8 @@ import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dial
   ],
   entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
     DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent,
-    AddSongDialogComponent, GetSongDialogComponent, DeleteSongDialogComponent],
+    AddSongDialogComponent, GetSongDialogComponent, DeleteSongDialogComponent, DeleteUserDialogComponent,
+    ChangeUserRoleDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,45 @@
+<span class="header">Delete Song</span>
+<form class="example-form" [formGroup]="getUserForm" (ngSubmit)="onSubmit(getUserForm)">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit">Submit</button>
+        <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    </div>
+</form>
+
+<mat-card *ngIf="loadedUser!=null">
+    <mat-card-title>{{loadedUser.email}}</mat-card-title>
+    <mat-card-content>
+        <form class="example-form" [formGroup]="deleteUserForm" (ngSubmit)="onSubmitDelete(deleteUserForm)">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [(ngModel)]="loadedUser.email" [formControl]="email">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Role" [(ngModel)]="loadedUser.role" [formControl]="role">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Birthday" [(ngModel)]="loadedUser.birthday" [formControl]="birthday">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Gender" [(ngModel)]="loadedUser.gender" [formControl]="gender">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Region" [(ngModel)]="loadedUser.region" [formControl]="region">
+            </mat-form-field>
+
+            <div class="example-actions">
+                <button mat-flat-button color="warn" type="submit" mat-dialog-close>Delete</button>
+            </div>
+        </form>
+
+    </mat-card-content>
+</mat-card>

@@ -15,7 +15,7 @@ export class DeleteAccountAlertComponent implements OnInit {
   }
 
   deleteAccount(){
-    this.userService.deleteUser().subscribe(
+    this.userService.deleteUser(this.userService.loggedUser.email).subscribe(
       (response) => {
         if(response.status===200){
           this.userService.loggedUser=null;
