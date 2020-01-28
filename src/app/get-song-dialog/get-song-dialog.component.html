@@ -2,18 +2,86 @@
 <form class="example-form" [formGroup]="getSongForm" (ngSubmit)="onSubmit(getSongForm)">
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Track name" formControlName="track_name" required>
+        <input matInput placeholder="Track name" formControlName="track_name">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Artist name" formControlName="artist_name" required>
+        <input matInput placeholder="Artist name" formControlName="artist_name">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Track id" formControlName="track_id" required>
+        <input matInput placeholder="Track id" formControlName="track_id">
     </mat-form-field>
-    
+
     <div class="example-actions">
-        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Add</button>
+        <button mat-flat-button color="primary" type="submit">Submit</button>
         <button mat-button color="primary" mat-dialog-close>Cancel</button>
     </div>
 </form>
+
+<mat-card *ngIf="loadedSong!=null">
+    <mat-card-title>{{loadedSong.track_name}} - {{loadedSong.artist_name}}</mat-card-title>
+    <div class="example-actions">
+        <button *ngIf="!editingEnabled" mat-button color="accent" (click)="enableEditing()">Enable Editing</button>
+        <button *ngIf="editingEnabled" mat-button color="accent" (click)="disableEditing()">Disable Editing</button>
+    </div>
+    <mat-card-content>
+        <form class="example-form" [formGroup]="editSongForm" (ngSubmit)="onSubmitEdit(editSongForm)">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Track name" [(ngModel)]="loadedSong.track_name" [formControl]="track_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Artist name" [(ngModel)]="loadedSong.artist_name" [formControl]="artist_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Track id" [(ngModel)]="loadedSong.track_id" [formControl]="track_id">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Acousticness" [(ngModel)]="loadedSong.acousticness" [formControl]="acousticness">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Danceability" [(ngModel)]="loadedSong.danceability" [formControl]="danceability">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Duration(ms)" [(ngModel)]="loadedSong.duration_ms" [formControl]="duration_ms">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Energy" [(ngModel)]="loadedSong.energy" [formControl]="energy">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Instrumentalness" [(ngModel)]="loadedSong.instrumentalness" [formControl]="instrumentalness">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Liveness" [(ngModel)]="loadedSong.liveness" [formControl]="liveness">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Loudness" [(ngModel)]="loadedSong.loudness" [formControl]="loudness">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Speechiness" [(ngModel)]="loadedSong.speechiness" [formControl]="speechiness">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Tempo" [(ngModel)]="loadedSong.tempo" [formControl]="tempo">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Valence" [(ngModel)]="loadedSong.valence" [formControl]="valence">
+            </mat-form-field>
+            <div class="example-actions" *ngIf="editingEnabled">
+                <button mat-flat-button color="primary" type="submit">Submit</button>
+            </div>
+        </form>
+
+    </mat-card-content>
+</mat-card>

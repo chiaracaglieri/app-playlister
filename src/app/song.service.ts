@@ -18,6 +18,11 @@ export class SongService {
     return this.http.post<JSON>(request, song, {observe: 'response'});
   }
 
+  updateSong(song: Song){
+    let request = this.baseUrl + "songManager/updateSong";
+    return this.http.put<JSON>(request, song, {observe: 'response'});
+  }
+
   getSong(track_id: string, track_name: string, artist_name: string){
     let request = this.baseUrl + "songManager/getSong?artistName="+ artist_name +"&trackId="+ track_id +"&trackName="+ track_name;
     return this.http.get<JSON>(request, {observe: 'response'});

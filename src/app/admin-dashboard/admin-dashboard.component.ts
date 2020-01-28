@@ -24,7 +24,7 @@ export class AdminDashboardComponent implements OnInit {
 
   openGetSongDialog(){
     const dialogRef = this.dialog.open(GetSongDialogComponent, {
-      width: '400px',
+      width: '600px',
       height: '500px'
     });
   }
