@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddSongDialogComponent } from '../add-song-dialog/add-song-dialog.component';
+import { GetSongDialogComponent } from '../get-song-dialog/get-song-dialog.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -21,4 +22,10 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
+  openGetSongDialog(){
+    const dialogRef = this.dialog.open(GetSongDialogComponent, {
+      width: '400px',
+      height: '500px'
+    });
+  }
 }

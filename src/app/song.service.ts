@@ -13,6 +13,16 @@ export class SongService {
   baseUrl = "https://playlister-project.herokuapp.com/";
   constructor(private http: HttpClient, private userService: UserService) { }
 
+  createSong(song: Song){
+    let request = this.baseUrl + "songManager/createSong";
+    return this.http.post<JSON>(request, song, {observe: 'response'});
+  }
+
+  getSong(track_id: string, track_name: string, artist_name: string){
+    let request = this.baseUrl + "songManager/getSong?artistName="+ artist_name +"&trackId="+ track_id +"&trackName="+ track_name;
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
+
   getRandomSongs(limit: number){
     let request = this.baseUrl + "songManager/getRandomSongs?limit=" + limit;
     return this.http.get<JSON>(request, {observe: 'response'});

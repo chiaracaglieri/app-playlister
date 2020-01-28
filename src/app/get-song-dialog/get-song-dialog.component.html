@@ -1,0 +1,19 @@
+<span class="header">Get Song</span>
+<form class="example-form" [formGroup]="getSongForm" (ngSubmit)="onSubmit(getSongForm)">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Track name" formControlName="track_name" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Artist name" formControlName="artist_name" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Track id" formControlName="track_id" required>
+    </mat-form-field>
+    
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Add</button>
+        <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    </div>
+</form>
