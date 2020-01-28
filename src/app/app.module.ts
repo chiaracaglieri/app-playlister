@@ -39,6 +39,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AddSongDialogComponent } from './add-song-dialog/add-song-dialog.component';
 import { GetSongDialogComponent } from './get-song-dialog/get-song-dialog.component';
+import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dialog.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { GetSongDialogComponent } from './get-song-dialog/get-song-dialog.compon
     EditPlaylistDialogComponent,
     AdminDashboardComponent,
     AddSongDialogComponent,
-    GetSongDialogComponent
+    GetSongDialogComponent,
+    DeleteSongDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ import { GetSongDialogComponent } from './get-song-dialog/get-song-dialog.compon
   ],
   entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
     DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent,
-    AddSongDialogComponent, GetSongDialogComponent],
+    AddSongDialogComponent, GetSongDialogComponent, DeleteSongDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

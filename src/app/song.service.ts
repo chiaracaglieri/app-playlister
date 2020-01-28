@@ -28,6 +28,11 @@ export class SongService {
     return this.http.get<JSON>(request, {observe: 'response'});
   }
 
+  deleteSong(track_id: string){
+    let request = this.baseUrl + "songManager/deleteSong?trackId="+ track_id;
+    return this.http.delete<JSON>(request, {observe: 'response'});
+  }
+
   getRandomSongs(limit: number){
     let request = this.baseUrl + "songManager/getRandomSongs?limit=" + limit;
     return this.http.get<JSON>(request, {observe: 'response'});
