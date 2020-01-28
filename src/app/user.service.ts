@@ -64,6 +64,12 @@ export class UserService {
     return this.http.put<JSON>(request, user, {observe: 'response'});
   }
 
+  updateUserRole(userToUpdate: User, role: string){
+    let request = this.baseUrl + "userManager/updateUser?email="+userToUpdate.email;
+    userToUpdate.role=role;
+    return this.http.put<JSON>(request, userToUpdate, {observe: 'response'});
+  }
+
   deleteUser(email: string) {
     let request = this.baseUrl + "userManager/deleteUser?email="+ email;
     return this.http.delete<JSON>(request, {observe: 'response'});
