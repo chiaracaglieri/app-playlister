@@ -42,6 +42,7 @@ import { GetSongDialogComponent } from './get-song-dialog/get-song-dialog.compon
 import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dialog.component';
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 import { ChangeUserRoleDialogComponent } from './change-user-role-dialog/change-user-role-dialog.component';
+import { AnalyticsOverviewComponent } from './analytics-overview/analytics-overview.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ChangeUserRoleDialogComponent } from './change-user-role-dialog/change-
     GetSongDialogComponent,
     DeleteSongDialogComponent,
     DeleteUserDialogComponent,
-    ChangeUserRoleDialogComponent
+    ChangeUserRoleDialogComponent,
+    AnalyticsOverviewComponent
   ],
   imports: [
     BrowserModule,

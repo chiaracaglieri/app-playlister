@@ -1,0 +1,137 @@
+<div class="main-container">
+    <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Top Artists
+            </mat-panel-title>
+            <mat-panel-description>
+              Get top artists within user and specify filters
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <span class="header">Top Artists</span><br>
+          <span class="sub-header">Filters:</span><br><br>
+          <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmit(filterTopArtistsForm)">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Country</mat-label>
+                  <mat-select formControlName="region">
+                      <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
+                          {{country.viewValue}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Gender</mat-label>
+                  <mat-select formControlName="gender">
+                      <mat-option *ngFor="let gender of genders" [value]="gender.displayedValue">
+                          {{gender.displayedValue}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input matInput [matDatepicker]="pickerMinA" placeholder="Min Birthday" formControlName="minBirthday">
+                  <mat-datepicker-toggle matSuffix [for]="pickerMinA"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerMinA></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input matInput [matDatepicker]="pickerMaxA" placeholder="Max Birthday" formControlName="maxBirthday">
+                  <mat-datepicker-toggle matSuffix [for]="pickerMaxA"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerMaxA></mat-datepicker>
+              </mat-form-field>
+              <div class="example-actions">
+                  <button mat-flat-button color="primary" type="submit">Apply</button>
+              </div>
+          </form>
+      
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Top Songs
+              </mat-panel-title>
+              <mat-panel-description>
+                Get top songs within user and specify filters
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <span class="header">Top Songs</span><br>
+            <span class="sub-header">Filters:</span><br><br>
+            <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmit(filterTopArtistsForm)">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="region">
+                        <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
+                            {{country.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option *ngFor="let gender of genders" [value]="gender.displayedValue">
+                            {{gender.displayedValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="pickerMinS" placeholder="Min Birthday" formControlName="minBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerMinS"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerMinS></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="pickerMaxS" placeholder="Max Birthday" formControlName="maxBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerMaxS"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerMaxS></mat-datepicker>
+                </mat-form-field>
+                <div class="example-actions">
+                    <button mat-flat-button color="primary" type="submit">Apply</button>
+                </div>
+            </form>
+        
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Top Genres
+              </mat-panel-title>
+              <mat-panel-description>
+                Get top genres within user and specify filters
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <span class="header">Top Genres</span><br>
+            <span class="sub-header">Filters:</span><br><br>
+            <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmit(filterTopArtistsForm)">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="region">
+                        <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
+                            {{country.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option *ngFor="let gender of genders" [value]="gender.displayedValue">
+                            {{gender.displayedValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="pickerMinG" placeholder="Min Birthday" formControlName="minBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerMinG"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerMinG></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="pickerMaxG" placeholder="Max Birthday" formControlName="maxBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerMaxG"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerMaxG></mat-datepicker>
+                </mat-form-field>
+                <div class="example-actions">
+                    <button mat-flat-button color="primary" type="submit">Apply</button>
+                </div>
+            </form>
+        
+          </mat-expansion-panel>
+      </mat-accordion>
+</div>
