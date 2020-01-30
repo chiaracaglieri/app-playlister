@@ -11,17 +11,19 @@ import { Region } from '../shared/model/Region';
 })
 export class RegisterComponent implements OnInit {
 
-  genders = [ 
-    {value:"FEMALE", displayedValue:"Female"}, 
-    {value:"MALE", displayedValue:"Male" }, 
-    {value:"OTHER", displayedValue:"Other"}];
-    
+  genders = [
+    { value: "FEMALE", displayedValue: "Female" },
+    { value: "MALE", displayedValue: "Male" },
+    { value: "OTHER", displayedValue: "Other" }];
+
   countries: Region = new Region();
-  registerForm: FormGroup ;
+  registerForm: FormGroup;
+  loading = false;
+  registerError = false;
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  
-  constructor(private router: Router,private formBuilder: FormBuilder, private userService: UserService) {
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService) {
     this.registerForm = this.formBuilder.group({
       email: this.email,
       password: '',
@@ -30,41 +32,43 @@ export class RegisterComponent implements OnInit {
       gender: '',
       region: ''
     });
-   }
+  }
 
-   getErrorMessage() {
+  getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
+      this.email.hasError('email') ? 'Not a valid email' :
+        '';
   }
 
   ngOnInit() {
   }
 
-  onSubmit(registerData: FormGroup ){
+  onSubmit(registerData: FormGroup) {
+    this.loading = true;
     console.log(registerData);
-    if(registerData.get("password").value!=registerData.get("passwordConfirm").value){
+    if (registerData.get("password").value != registerData.get("passwordConfirm").value) {
       console.log("passwords dont match");
     }
-   this.userService.createUser(registerData).subscribe(
+    this.userService.createUser(registerData).subscribe(
       (response) => {
-        if(response.status === 201){
-           let json: JSON = response.body;
-           this.userService.loggedUser = json['data'];
-           this.router.navigateByUrl('/dashboard');
-        } else {
-
-        }
+        let json: JSON = response.body;
+        this.userService.loggedUser = json['data'];
+        this.loading = false;
+        this.router.navigateByUrl('/dashboard');
+      },
+      (error) => {
+        this.registerError = true;
+        this.loading = false;
       }
     );
 
   }
 
-  loadDashboard(){
+  loadDashboard() {
     this.router.navigateByUrl('/dashboard');
   }
 
-  loadLogin(){
+  loadLogin() {
     this.router.navigateByUrl('/login');
   }
 

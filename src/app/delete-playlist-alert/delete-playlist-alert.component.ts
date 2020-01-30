@@ -28,6 +28,7 @@ export class DeletePlaylistAlertComponent implements OnInit {
               if(response.status === 200){
                 let json: JSON = response.body;
                 this.userService.loggedUser = json['data'];
+                this.playlistService.isPlaylistOverview = true;
               }
               else{
       

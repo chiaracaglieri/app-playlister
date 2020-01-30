@@ -13,7 +13,6 @@ import { PlaylistService } from '../playlist.service';
 })
 export class PlaylistsOverviewComponent implements OnInit {
   topArtist: string;
-  overview: boolean = true;
   selectedPlaylist: Playlist = null;
 
   constructor(private userService: UserService, public dialog: MatDialog, private playlistService: PlaylistService) {
@@ -40,7 +39,7 @@ openAddPlaylistDialog(){
 }
 
 openPlaylistDetail(playlist: Playlist){
-  this.overview = false;
+  this.playlistService.isPlaylistOverview = false;
   this.selectedPlaylist=playlist;
 }
 

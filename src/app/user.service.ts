@@ -26,6 +26,16 @@ export class UserService {
     return this.http.get<JSON>(request, {observe: 'response'});
   }
 
+  userHasSongs(): boolean{
+    let playlists=this.getPlaylists();
+    for(let playlist of playlists){
+      if(playlist.songs!=null){
+        return true;
+      }
+    }
+    return false;
+  }
+
   getUser(email: string){
     let request = this.baseUrl + "userManager/getUser?email=" + email;
     return this.http.get<JSON>(request, {observe: 'response'});
@@ -46,10 +56,10 @@ export class UserService {
     return this.http.post<JSON>(request, user, {observe: 'response'});
   }
 
-  updateUser(accountData: FormGroup){
-    let request = this.baseUrl + "userManager/updateUser?email="+this.loggedUser.email;
+  updateUser(oldEmail: string, accountData: FormGroup){
+    let request = this.baseUrl + "userManager/updateUser?email="+oldEmail;
     let user: User = new User();
-    if(accountData.get("newPassword").value!=null){
+    if(accountData.get("newPassword")!=null){
       user.password = accountData.get("newPassword").value;
     } else {
       let pipe = new DatePipe(this.locale); // Use your own locale

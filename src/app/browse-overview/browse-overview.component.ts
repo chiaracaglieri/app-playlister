@@ -4,6 +4,7 @@ import { SongService } from '../song.service';
 import { Song } from '../shared/model/Song';
 import { SongDetailDialogComponent } from '../song-detail-dialog/song-detail-dialog.component';
 import { MatDialog } from '@angular/material';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-browse-overview',
@@ -17,25 +18,19 @@ export class BrowseOverviewComponent implements OnInit {
   suggestedSongsList: Song[];
 
   constructor(private formBuilder: FormBuilder, private songService: SongService,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog, private userService: UserService) { 
     this.searchForm = this.formBuilder.group({
       search: ''
     });
 
     this.songService.getSongsSuggestions(10,20).subscribe(
       (response) => {
-        if (response.status === 200) {
-          let json: JSON = response.body;
-          this.suggestedSongsList = json['data'];
-          this.refreshExploreSongs();
-        }
-        else {
-
-        }
+        let json: JSON = response.body;
+        this.suggestedSongsList = json['data'];
       }
     );
 
-    
+    this.refreshExploreSongs();
 
   }
 

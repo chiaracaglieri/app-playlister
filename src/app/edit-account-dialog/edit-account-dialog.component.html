@@ -1,3 +1,5 @@
+<div class="header">Edit account details</div>
+<br><br>
 <form class="example-form" [formGroup]="editAccountForm" (ngSubmit)="onSubmit(editAccountForm)">
     <mat-form-field class="example-full-width">
         <input matInput placeholder="E-mail" [(ngModel)]="this.userService.loggedUser.email" [formControl]="email" required>
@@ -11,8 +13,8 @@
     <mat-form-field class="example-full-width">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender" [(ngModel)]="this.userService.loggedUser.gender" required>
-            <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                {{gender.displayedValue}}
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+                {{gender}}
             </mat-option>
         </mat-select>
     </mat-form-field>

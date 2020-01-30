@@ -10,14 +10,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./edit-account-dialog.component.css']
 })
 export class EditAccountDialogComponent implements OnInit {
-  genders = [ 
-    {value:"FEMALE", displayedValue:"Female"}, 
-    {value:"MALE", displayedValue:"Male" }, 
-    {value:"OTHER", displayedValue:"Other"}];
+  genders = [ "Female", "Male","Other"];
     
   countries: Region = new Region();
   editAccountForm: FormGroup ;
-
+  oldEmail: string;
   email = new FormControl('', [Validators.required, Validators.email]);
   
   constructor(private router: Router,private formBuilder: FormBuilder, private userService: UserService) {
@@ -27,6 +24,7 @@ export class EditAccountDialogComponent implements OnInit {
       gender: '',
       region: ''
     });
+    this.oldEmail=this.userService.loggedUser.email;
    }
 
    getErrorMessage() {
@@ -40,7 +38,7 @@ export class EditAccountDialogComponent implements OnInit {
 
   onSubmit(editAccountData: FormGroup ){
     console.log(editAccountData);
-    this.userService.updateUser(editAccountData).subscribe(
+    this.userService.updateUser(this.oldEmail, editAccountData).subscribe(
       (response) => {
         if(response.status === 200){
            this.userService.getUser(this.userService.loggedUser.email).subscribe(

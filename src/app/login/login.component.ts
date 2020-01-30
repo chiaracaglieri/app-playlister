@@ -28,15 +28,15 @@ export class LoginComponent implements OnInit {
     this.loading=true;
     this.userService.loadUserDetail(loginData.get("email").value, loginData.get("password").value).subscribe(
       (response) => {
-        if(response.status === 200){
           this.loginError = false;
           let json: JSON = response.body;
           this.userService.loggedUser = json['data'];
           this.loading=false;
           this.router.navigateByUrl('/dashboard');
-        } else {
-          this.loginError = true;
-        }
+      },
+      (error) => {
+        this.loginError = true;
+          this.loading=false;
       }
     );
 

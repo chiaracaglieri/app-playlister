@@ -22,7 +22,7 @@ export class ChangePasswordDialogComponent implements OnInit {
 
   onSubmit(changePasswordData: FormGroup ){
     console.log(changePasswordData);
-   this.userService.updateUser(changePasswordData).subscribe(
+   this.userService.updateUser(this.userService.loggedUser.email, changePasswordData).subscribe(
     (response) => {
       if(response.status === 200){
          this.userService.getUser(this.userService.loggedUser.email).subscribe(

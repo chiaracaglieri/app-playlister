@@ -6,6 +6,7 @@ import { Song } from '../shared/model/Song';
 import { MatDialog } from '@angular/material';
 import { DeletePlaylistAlertComponent } from '../delete-playlist-alert/delete-playlist-alert.component';
 import { EditPlaylistDialogComponent } from '../edit-playlist-dialog/edit-playlist-dialog.component';
+import { PlaylistService } from '../playlist.service';
 
 // export interface PeriodicElement {
 //   name: string;
@@ -23,12 +24,11 @@ import { EditPlaylistDialogComponent } from '../edit-playlist-dialog/edit-playli
 })
 export class PlaylistDetailComponent implements OnInit{
   @Input() playlist: Playlist;
-  
   SONG_DATA: Song[];
   displayedColumns: string[] = ['Song', 'Artist', 'Duration'];
   dataSource;
 
-  constructor(private router: Router, public dialog: MatDialog) { 
+  constructor(private router: Router, public dialog: MatDialog, private playlistService: PlaylistService) { 
     
   }
 
@@ -49,7 +49,7 @@ export class PlaylistDetailComponent implements OnInit{
   }
 
   goBack(){
-    this.router.navigateByUrl('/dashboard');
+    this.playlistService.isPlaylistOverview = true;
   }
 
   openDeletePlaylistAlert(){

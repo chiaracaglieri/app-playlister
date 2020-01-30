@@ -1,10 +1,9 @@
 <div class="main-container">
     <span class="header"> Welcome, {{ this.userService.loggedUser.email }} !</span>
     <hr>
-    <span class="sub-header"> Account information</span>
+    <span class="section-header"> Account information</span>
     <mat-list role="list">
         <mat-list-item role="listitem">Account type: {{ this.userService.loggedUser.role }}</mat-list-item>
-        <br>
         <mat-list-item role="listitem">E-mail: {{ this.userService.loggedUser.email }}</mat-list-item>
         <mat-list-item role="listitem">Password: ********</mat-list-item>
         <mat-list-item role="listitem">Birthday: {{ this.userService.loggedUser.birthday }}</mat-list-item>
@@ -17,8 +16,9 @@
     <button mat-button color="primary" (click)="openEditAccountDialog()">Edit account details</button>
     <br>
     <button mat-button color="primary" (click)="openChangePasswordDialog()">Change password</button>
+    <br><br>
+    <button mat-button color="warn" (click)="openDeleteAccountAlert()">Delete account</button>
     <div class="example-actions">
         <button mat-flat-button color="primary" (click)="logOut()">Log out</button>
-        <button mat-button color="warn" (click)="openDeleteAccountAlert()">Delete account</button>
     </div>
 </div>
