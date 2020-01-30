@@ -36,4 +36,55 @@ export class PlaylistService {
     let request = this.baseUrl + "playlistManager/getMostPopularArtist?email=" + this.userService.loggedUser.email;
     return this.http.get<JSON>(request, {observe: 'response'});
   }
+
+  getTopArtists(limit: number, minBirthday: string, maxBirthday: string, gender: string, region: string){
+    let request = this.baseUrl + "playlistManager/getTopArtists?limit=" + limit;
+    if(minBirthday!=null && minBirthday.length>0){
+      request= request+ "&minBirthday=" + minBirthday;
+    }
+    if(maxBirthday!=null && maxBirthday.length>0){
+      request= request+ "&maxBirthday=" + maxBirthday;
+    }
+    if(gender!=null && gender.length>0){
+      request= request+ "&gender=" + gender;
+    }
+    if(region!= null && region.length>0){
+      request= request+ "&region=" + region;
+    }
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
+
+  getTopSongs(limit: number, minBirthday: string, maxBirthday: string, gender: string, region: string){
+    let request = this.baseUrl + "playlistManager/getTopSongs?limit=" + limit;
+    if(minBirthday!=null && minBirthday.length>0){
+      request= request+ "&minBirthday=" + minBirthday;
+    }
+    if(maxBirthday!=null && maxBirthday.length>0){
+      request= request+ "&maxBirthday=" + maxBirthday;
+    }
+    if(gender!=null && gender.length>0){
+      request= request+ "&gender=" + gender;
+    }
+    if(region!= null && region.length>0){
+      request= request+ "&region=" + region;
+    }
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
+
+  getTopGenres(limit: number, minBirthday: string, maxBirthday: string, gender: string, region: string){
+    let request = this.baseUrl + "playlistManager/getTopGenres?limit=" + limit;
+    if(minBirthday!=null && minBirthday.length>0){
+      request= request+ "&minBirthday=" + minBirthday;
+    }
+    if(maxBirthday!=null && maxBirthday.length>0){
+      request= request+ "&maxBirthday=" + maxBirthday;
+    }
+    if(gender!=null && gender.length>0){
+      request= request+ "&gender=" + gender;
+    }
+    if(region!= null && region.length>0){
+      request= request+ "&region=" + region;
+    }
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
 }

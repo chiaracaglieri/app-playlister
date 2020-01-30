@@ -43,6 +43,7 @@ import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dial
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 import { ChangeUserRoleDialogComponent } from './change-user-role-dialog/change-user-role-dialog.component';
 import { AnalyticsOverviewComponent } from './analytics-overview/analytics-overview.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { AnalyticsOverviewComponent } from './analytics-overview/analytics-overv
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
     DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent,

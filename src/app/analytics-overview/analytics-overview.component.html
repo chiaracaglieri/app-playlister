@@ -11,7 +11,7 @@
           </mat-expansion-panel-header>
           <span class="header">Top Artists</span><br>
           <span class="sub-header">Filters:</span><br><br>
-          <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmit(filterTopArtistsForm)">
+          <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmitArtists(filterTopArtistsForm)">
               <mat-form-field class="example-full-width">
                   <mat-label>Country</mat-label>
                   <mat-select formControlName="region">
@@ -38,11 +38,21 @@
                   <mat-datepicker-toggle matSuffix [for]="pickerMaxA"></mat-datepicker-toggle>
                   <mat-datepicker #pickerMaxA></mat-datepicker>
               </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Number of results" formControlName="limit" type="number" required>
+            </mat-form-field>
+
               <div class="example-actions">
                   <button mat-flat-button color="primary" type="submit">Apply</button>
               </div>
           </form>
       
+          <div *ngIf="artistResult!=[]">
+              <div *ngFor="let artist of artistResult">
+                  {{ artist }}
+              </div>
+          </div>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -55,7 +65,7 @@
             </mat-expansion-panel-header>
             <span class="header">Top Songs</span><br>
             <span class="sub-header">Filters:</span><br><br>
-            <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmit(filterTopArtistsForm)">
+            <form class="example-form" [formGroup]="filterTopSongsForm" (ngSubmit)="onSubmitSongs(filterTopSongsForm)">
                 <mat-form-field class="example-full-width">
                     <mat-label>Country</mat-label>
                     <mat-select formControlName="region">
@@ -82,11 +92,22 @@
                     <mat-datepicker-toggle matSuffix [for]="pickerMaxS"></mat-datepicker-toggle>
                     <mat-datepicker #pickerMaxS></mat-datepicker>
                 </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Number of results" formControlName="limit" type="number" required>
+                </mat-form-field>
+
                 <div class="example-actions">
                     <button mat-flat-button color="primary" type="submit">Apply</button>
                 </div>
             </form>
         
+            <div *ngIf="songResult!=[]">
+                <div *ngFor="let song of songResult">
+                    {{ song.track_name }}
+                </div>
+            </div>
+
           </mat-expansion-panel>
 
           <mat-expansion-panel>
@@ -100,7 +121,7 @@
             </mat-expansion-panel-header>
             <span class="header">Top Genres</span><br>
             <span class="sub-header">Filters:</span><br><br>
-            <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmit(filterTopArtistsForm)">
+            <form class="example-form" [formGroup]="filterTopGenresForm" (ngSubmit)="onSubmitGenres(filterTopGenresForm)">
                 <mat-form-field class="example-full-width">
                     <mat-label>Country</mat-label>
                     <mat-select formControlName="region">
@@ -127,11 +148,22 @@
                     <mat-datepicker-toggle matSuffix [for]="pickerMaxG"></mat-datepicker-toggle>
                     <mat-datepicker #pickerMaxG></mat-datepicker>
                 </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Number of results" formControlName="limit" type="number" required>
+                </mat-form-field>
+
                 <div class="example-actions">
                     <button mat-flat-button color="primary" type="submit">Apply</button>
                 </div>
             </form>
         
+            <div *ngIf="genreResult!=[]">
+                <div *ngFor="let genre of genreResult">
+                    {{ genre }}
+                </div>
+            </div>
+
           </mat-expansion-panel>
       </mat-accordion>
 </div>

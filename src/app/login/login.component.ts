@@ -12,6 +12,7 @@ import { User } from '../shared/model/User';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup ;
   loginError = false;
+  loading = false;
 
   constructor(private router: Router,private formBuilder: FormBuilder, private userService: UserService) {
     this.loginForm = this.formBuilder.group({
@@ -24,13 +25,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginData: FormGroup ){
-    
+    this.loading=true;
     this.userService.loadUserDetail(loginData.get("email").value, loginData.get("password").value).subscribe(
       (response) => {
         if(response.status === 200){
           this.loginError = false;
           let json: JSON = response.body;
           this.userService.loggedUser = json['data'];
+          this.loading=false;
           this.router.navigateByUrl('/dashboard');
         } else {
           this.loginError = true;
