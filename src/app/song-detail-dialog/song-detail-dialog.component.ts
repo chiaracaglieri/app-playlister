@@ -13,7 +13,7 @@ import { SongService } from '../song.service';
 export class SongDetailDialogComponent implements OnInit {
   addToPlaylistForm: FormGroup ;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private userService: UserService, private songService: SongService ) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, public userService: UserService, public songService: SongService ) { 
     this.addToPlaylistForm = this.formBuilder.group({
       playlist: ''
     });

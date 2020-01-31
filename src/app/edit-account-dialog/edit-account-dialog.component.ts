@@ -17,7 +17,7 @@ export class EditAccountDialogComponent implements OnInit {
   oldEmail: string;
   email = new FormControl('', [Validators.required, Validators.email]);
   
-  constructor(private router: Router,private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private router: Router,private formBuilder: FormBuilder, public userService: UserService) {
     this.editAccountForm = this.formBuilder.group({
       email: this.email,
       birthday: '',

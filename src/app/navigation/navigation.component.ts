@@ -11,7 +11,7 @@ export class NavigationComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
   activeTab = 3;
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, public userService: UserService) { }
 
   toggleDrawer() {
     this.opened = !this.opened;

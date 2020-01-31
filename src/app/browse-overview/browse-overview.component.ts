@@ -17,8 +17,8 @@ export class BrowseOverviewComponent implements OnInit {
   exploreSongsList: Song[];
   suggestedSongsList: Song[];
 
-  constructor(private formBuilder: FormBuilder, private songService: SongService,
-    public dialog: MatDialog, private userService: UserService) { 
+  constructor(private formBuilder: FormBuilder, public songService: SongService,
+    public dialog: MatDialog, public userService: UserService) { 
     this.searchForm = this.formBuilder.group({
       search: ''
     });
