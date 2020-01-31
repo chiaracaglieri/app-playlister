@@ -13,7 +13,7 @@ import { DeleteAccountAlertComponent } from '../delete-account-alert/delete-acco
 })
 export class AccountOverviewComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, public dialog: MatDialog) { }
+  constructor(public userService: UserService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
   }

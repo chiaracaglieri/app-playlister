@@ -15,7 +15,7 @@ export class PlaylistsOverviewComponent implements OnInit {
   topArtist: string;
   selectedPlaylist: Playlist = null;
   loading = false;
-  constructor(private userService: UserService, public dialog: MatDialog, private playlistService: PlaylistService) {
+  constructor(public userService: UserService, public dialog: MatDialog, public playlistService: PlaylistService) {
     this.loading=true;
     this.playlistService.getMostPopularArtist().subscribe(
       (response) => {
