@@ -16,9 +16,11 @@ export class BrowseOverviewComponent implements OnInit {
   searchForm: FormGroup ;
   exploreSongsList: Song[];
   suggestedSongsList: Song[];
+  loading=false;
 
   constructor(private formBuilder: FormBuilder, public songService: SongService,
     public dialog: MatDialog, public userService: UserService) { 
+      this.loading=true;
     this.searchForm = this.formBuilder.group({
       search: ''
     });
@@ -27,10 +29,12 @@ export class BrowseOverviewComponent implements OnInit {
       (response) => {
         let json: JSON = response.body;
         this.suggestedSongsList = json['data'];
+        this.refreshExploreSongs();
+        this.loading=false;
       }
     );
 
-    this.refreshExploreSongs();
+    
 
   }
 
@@ -38,10 +42,12 @@ export class BrowseOverviewComponent implements OnInit {
   }
 
   refreshExploreSongs(){
+    this.loading=true;
     this.songService.getRandomSongs(10).subscribe(
       (response) => {
           let json: JSON = response.body;
           this.exploreSongsList = json['data'];
+          this.loading=false;
       }
     );
   }
