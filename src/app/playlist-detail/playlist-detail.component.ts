@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { DeletePlaylistAlertComponent } from '../delete-playlist-alert/delete-playlist-alert.component';
 import { EditPlaylistDialogComponent } from '../edit-playlist-dialog/edit-playlist-dialog.component';
 import { PlaylistService } from '../playlist.service';
+import { AddSongToPlaylistDialogComponent } from '../add-song-to-playlist-dialog/add-song-to-playlist-dialog.component';
 
 // export interface PeriodicElement {
 //   name: string;
@@ -64,6 +65,16 @@ export class PlaylistDetailComponent implements OnInit{
   openEditPlaylistDialog(){
     const dialogRef = this.dialog.open(EditPlaylistDialogComponent, {
       width: '400px',
+      data: {
+        playlist: this.playlist
+      }
+    });
+  }
+
+  openAddSongToPlaylistDialog(){
+    const dialogRef = this.dialog.open(AddSongToPlaylistDialogComponent, {
+      width: '600px',
+      height: '700px',
       data: {
         playlist: this.playlist
       }

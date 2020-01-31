@@ -44,6 +44,8 @@ import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dial
 import { ChangeUserRoleDialogComponent } from './change-user-role-dialog/change-user-role-dialog.component';
 import { AnalyticsOverviewComponent } from './analytics-overview/analytics-overview.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AddSongToPlaylistDialogComponent } from './add-song-to-playlist-dialog/add-song-to-playlist-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     DeleteSongDialogComponent,
     DeleteUserDialogComponent,
     ChangeUserRoleDialogComponent,
-    AnalyticsOverviewComponent
+    AnalyticsOverviewComponent,
+    AddSongToPlaylistDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,12 +96,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatNativeDateModule,
     MatTableModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
     DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent,
     AddSongDialogComponent, GetSongDialogComponent, DeleteSongDialogComponent, DeleteUserDialogComponent,
-    ChangeUserRoleDialogComponent],
+    ChangeUserRoleDialogComponent, AddSongToPlaylistDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

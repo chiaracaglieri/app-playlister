@@ -43,21 +43,22 @@ export class SongService {
     return this.http.post<JSON>(request, this.userService.loggedUser, {observe: 'response'});
   }
 
+  getSongs(artistName: string, trackName: string, genre: string){
+    let request = this.baseUrl + "songManager/getSongs?";
+    if(artistName!=null){
+      request = request.concat("artistName="+artistName+"&");
+    }
+    if(trackName!=null){
+      request = request.concat("trackName="+ trackName+"&");
+    }
+    if(genre!=null){
+      request = request.concat("genre="+genre);
+    }
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
+
   addToPlaylist(song: Song, name: string){
     let request = this.baseUrl + "songManager/addSongToPlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ name+"&trackId="+song.track_id;
     return this.http.put<JSON>(request, {observe: 'response'});
   }
-  // getPlaylists(): Playlist[]{
-  //   return this.userService.loggedUser.playlists;
-  // }
-
-  // createPlaylist(name: string){
-  //   let request = this.baseUrl + "playlistManager/createPlaylist?email=" + this.userService.loggedUser.email + "&playlistName=" + name;
-  //   return this.http.post(request, {observe: 'response'});
-  // }
-
-  // getMostPopularArtist(){
-  //   let request = this.baseUrl + "playlistManager/getMostPopularArtist?email=" + this.userService.loggedUser.email;
-  //   return this.http.get<JSON>(request, {observe: 'response'});
-  // }
 }
