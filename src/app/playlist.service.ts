@@ -11,6 +11,10 @@ import { Song } from './shared/model/Song';
 export class PlaylistService {
 
   isPlaylistOverview= true;
+  selectedPlaylistName: string;
+  SONG_DATA: Song[];
+  dataSource;
+  
   baseUrl = "https://playlister-project.herokuapp.com/";
   constructor(private http: HttpClient, private userService: UserService) { }
 

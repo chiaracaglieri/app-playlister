@@ -1,5 +1,5 @@
 <div class="header">
-  {{ playlist.name }}
+  {{ playlistName }}
   <button mat-icon-button (click)="openEditPlaylistDialog()">
     <mat-icon>edit</mat-icon>
   </button>
@@ -12,7 +12,7 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="playlistService.dataSource" class="mat-elevation-z8">
 
     <!-- Position Column -->
     <ng-container matColumnDef="Song">

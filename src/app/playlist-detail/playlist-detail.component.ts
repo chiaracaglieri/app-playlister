@@ -26,10 +26,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./playlist-detail.component.css']
 })
 export class PlaylistDetailComponent implements OnInit {
-  @Input() playlist: Playlist = new Playlist();
-  SONG_DATA: Song[];
+  @Input() playlistName: string;
+
   displayedColumns: string[] = ['Song', 'Artist', 'Duration', 'Delete'];
-  dataSource;
 
   constructor(private router: Router, public dialog: MatDialog, public playlistService: PlaylistService,
     public songService: SongService, public userService: UserService) {
@@ -38,12 +37,15 @@ export class PlaylistDetailComponent implements OnInit {
 
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.playlistService.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnInit() {
-    this.SONG_DATA = this.playlist.songs;
-    this.dataSource = new MatTableDataSource(this.SONG_DATA);
+    let name = this.playlistName;
+    this.playlistService.SONG_DATA = this.userService.loggedUser.playlists.filter(function(p) {
+      return p.name === name;
+    })[0].songs;
+    this.playlistService.dataSource = new MatTableDataSource(this.playlistService.SONG_DATA);
   }
 
   millisToMinutesAndSeconds(millis: number) {
@@ -57,45 +59,54 @@ export class PlaylistDetailComponent implements OnInit {
   }
 
   openDeletePlaylistAlert() {
+    let name = this.playlistName;
     const dialogRef = this.dialog.open(DeletePlaylistAlertComponent, {
       width: '400px',
       data: {
-        playlist: this.playlist
+        playlist: this.userService.loggedUser.playlists.filter(function(p) {
+          return p.name === name;
+        })[0]
       }
     });
   }
 
   openEditPlaylistDialog() {
+    let name = this.playlistName;
     const dialogRef = this.dialog.open(EditPlaylistDialogComponent, {
       width: '400px',
       data: {
-        playlist: this.playlist
+        playlist: this.userService.loggedUser.playlists.filter(function(p) {
+          return p.name === name;
+        })[0]
       }
     });
   }
 
   openAddSongToPlaylistDialog() {
+    let name = this.playlistName;
     const dialogRef = this.dialog.open(AddSongToPlaylistDialogComponent, {
       width: '900px',
       height: '600px',
       data: {
-        playlist: this.playlist
+        playlist: this.userService.loggedUser.playlists.filter(function(p) {
+          return p.name === name;
+        })[0]
       }
     });
   }
 
   deleteFromPlaylist(trackId: string) {
-    this.songService.deleteSongFromPlaylist(this.playlist.name, trackId).subscribe(
+    this.songService.deleteSongFromPlaylist(this.playlistName, trackId).subscribe(
       (response) => {
         this.userService.getUser(this.userService.loggedUser.email).subscribe(
           (response) => {
             let json: JSON = response.body;
             this.userService.loggedUser = json['data'];
-            let name = this.playlist.name;
-            this.SONG_DATA = this.userService.loggedUser.playlists.filter(function(p) {
+            let name = this.playlistName;
+            this.playlistService.SONG_DATA = this.userService.loggedUser.playlists.filter(function(p) {
               return p.name === name;
             })[0].songs;
-            this.dataSource = new MatTableDataSource(this.SONG_DATA);
+            this.playlistService.dataSource = new MatTableDataSource(this.playlistService.SONG_DATA);
           }
         );
       }

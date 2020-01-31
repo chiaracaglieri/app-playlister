@@ -33,5 +33,5 @@
     </div>
 </div>
     <div class="main-container" *ngIf="!playlistService.isPlaylistOverview">
-        <app-playlist-detail [playlist]="selectedPlaylist"></app-playlist-detail>
+        <app-playlist-detail [playlistName]="playlistService.selectedPlaylistName"></app-playlist-detail>
     </div>

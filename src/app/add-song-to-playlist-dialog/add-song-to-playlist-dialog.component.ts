@@ -6,6 +6,7 @@ import { SongService } from '../song.service';
 import { Song } from '../shared/model/Song';
 import { User } from '../shared/model/User';
 import { UserService } from '../user.service';
+import { PlaylistService } from '../playlist.service';
 
 
 @Component({
@@ -60,7 +61,9 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
   addSongForm: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder,
-    private songService: SongService, private userService: UserService) {
+    public songService: SongService, public userService: UserService,
+    public playlistService: PlaylistService) {
+      
     this.playlist = data.playlist;
     this.addSongForm = this.formBuilder.group({
       track_name: '',
@@ -104,13 +107,13 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
       (response)=>{
         this.userService.getUser(this.userService.loggedUser.email).subscribe(
           (response) => {
-            if(response.status === 200){
               let json: JSON = response.body;
               this.userService.loggedUser = json['data'];
-            }
-            else{
-    
-            }
+              let name = this.playlist.name;
+              this.playlistService.SONG_DATA = this.userService.loggedUser.playlists.filter(function(p) {
+              return p.name === name;
+            })[0].songs;
+            this.playlistService.dataSource = new MatTableDataSource(this.playlistService.SONG_DATA);
           }
          );
       }
