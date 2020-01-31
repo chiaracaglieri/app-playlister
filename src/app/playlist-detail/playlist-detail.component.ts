@@ -73,8 +73,8 @@ export class PlaylistDetailComponent implements OnInit{
 
   openAddSongToPlaylistDialog(){
     const dialogRef = this.dialog.open(AddSongToPlaylistDialogComponent, {
-      width: '600px',
-      height: '700px',
+      width: '900px',
+      height: '600px',
       data: {
         playlist: this.playlist
       }

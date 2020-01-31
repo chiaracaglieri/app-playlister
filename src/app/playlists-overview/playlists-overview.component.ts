@@ -14,19 +14,16 @@ import { PlaylistService } from '../playlist.service';
 export class PlaylistsOverviewComponent implements OnInit {
   topArtist: string;
   selectedPlaylist: Playlist = null;
-
+  loading = false;
   constructor(private userService: UserService, public dialog: MatDialog, private playlistService: PlaylistService) {
+    this.loading=true;
     this.playlistService.getMostPopularArtist().subscribe(
       (response) => {
-        if (response.status === 200) {
           let json: JSON = response.body;
           this.topArtist = json['data'];
-        }
-        else {
-
-        }
       }
     );
+    this.loading=false;
   }
   
 ngOnInit() {

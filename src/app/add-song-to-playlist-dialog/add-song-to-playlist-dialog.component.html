@@ -30,37 +30,41 @@
         <table mat-table [dataSource]="dataSource">
       
           <!-- Position Column -->
-          <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          <ng-container matColumnDef="Song">
+            <th mat-header-cell *matHeaderCellDef> Song </th>
+            <td mat-cell *matCellDef="let song"> {{song.track_name}} </td>
           </ng-container>
       
           <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <ng-container matColumnDef="Artist">
+            <th mat-header-cell *matHeaderCellDef> Artist </th>
+            <td mat-cell *matCellDef="let song"> {{song.artist_name}} </td>
           </ng-container>
       
           <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          <ng-container matColumnDef="Genre">
+            <th mat-header-cell *matHeaderCellDef> Genre </th>
+            <td mat-cell *matCellDef="let song"> {{song.genre}} </td>
           </ng-container>
       
           <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <ng-container matColumnDef="Duration">
+            <th mat-header-cell *matHeaderCellDef> Duration </th>
+            <td mat-cell *matCellDef="let song"> {{this.millisToMinutesAndSeconds(song.duration_ms)}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Symbol">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let song"> <button mat-icon-button (click)="addToPlaylist(song)">
+              <mat-icon>add</mat-icon>
+            </button>
+           </td>
           </ng-container>
       
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
       </div>
-      
-    <div *ngFor="let song of loadedSongs">
-        {{ song.track_name }} - {{ song.artist_name }}
-    </div>
 </div>
