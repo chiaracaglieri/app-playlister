@@ -61,4 +61,9 @@ export class SongService {
     let request = this.baseUrl + "songManager/addSongToPlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ name+"&trackId="+song.track_id;
     return this.http.put<JSON>(request, {observe: 'response'});
   }
+
+  deleteSongFromPlaylist(playlist: string, trackId: string){
+    let request = this.baseUrl + "songManager/deleteSongFromPlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ playlist+"&trackId="+trackId;
+    return this.http.delete<JSON>(request, {observe: 'response'});
+  }
 }
