@@ -27,6 +27,25 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import { EditAccountDialogComponent } from './edit-account-dialog/edit-account-dialog.component';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
+import { DeleteAccountAlertComponent } from './delete-account-alert/delete-account-alert.component';
+import { BrowseOverviewComponent } from './browse-overview/browse-overview.component';
+import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
+import {MatTableModule} from '@angular/material/table';
+import { SongDetailComponent } from './song-detail/song-detail.component';
+import { DeletePlaylistAlertComponent } from './delete-playlist-alert/delete-playlist-alert.component';
+import { SongDetailDialogComponent } from './song-detail-dialog/song-detail-dialog.component';
+import { EditPlaylistDialogComponent } from './edit-playlist-dialog/edit-playlist-dialog.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AddSongDialogComponent } from './add-song-dialog/add-song-dialog.component';
+import { GetSongDialogComponent } from './get-song-dialog/get-song-dialog.component';
+import { DeleteSongDialogComponent } from './delete-song-dialog/delete-song-dialog.component';
+import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
+import { ChangeUserRoleDialogComponent } from './change-user-role-dialog/change-user-role-dialog.component';
+import { AnalyticsOverviewComponent } from './analytics-overview/analytics-overview.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AddSongToPlaylistDialogComponent } from './add-song-to-playlist-dialog/add-song-to-playlist-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -39,7 +58,22 @@ import { ChangePasswordDialogComponent } from './change-password-dialog/change-p
     PlaylistsOverviewComponent,
     AddPlaylistDialogComponent,
     EditAccountDialogComponent,
-    ChangePasswordDialogComponent
+    ChangePasswordDialogComponent,
+    DeleteAccountAlertComponent,
+    BrowseOverviewComponent,
+    PlaylistDetailComponent,
+    SongDetailComponent,
+    DeletePlaylistAlertComponent,
+    SongDetailDialogComponent,
+    EditPlaylistDialogComponent,
+    AdminDashboardComponent,
+    AddSongDialogComponent,
+    GetSongDialogComponent,
+    DeleteSongDialogComponent,
+    DeleteUserDialogComponent,
+    ChangeUserRoleDialogComponent,
+    AnalyticsOverviewComponent,
+    AddSongToPlaylistDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +93,16 @@ import { ChangePasswordDialogComponent } from './change-password-dialog/change-p
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
-  entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent],
+  entryComponents: [AddPlaylistDialogComponent, EditAccountDialogComponent, ChangePasswordDialogComponent,
+    DeleteAccountAlertComponent, DeletePlaylistAlertComponent, SongDetailDialogComponent, EditPlaylistDialogComponent,
+    AddSongDialogComponent, GetSongDialogComponent, DeleteSongDialogComponent, DeleteUserDialogComponent,
+    ChangeUserRoleDialogComponent, AddSongToPlaylistDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

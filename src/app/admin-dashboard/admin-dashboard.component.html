@@ -1,0 +1,49 @@
+<div class="main-container">
+    <span class="header">Admin dashboard</span>
+    <br>
+    <br>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    User operations
+                </mat-panel-title>
+                <mat-panel-description>
+                    Manage users
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-panel-description>
+                <button mat-button color="primary" (click)="openDeleteUserDialog()">Delete user</button>
+            </mat-panel-description>
+
+            <mat-panel-description>
+                <button mat-button color="primary" (click)="openChangeUserRoleDialog()">Change user role</button>
+            </mat-panel-description>
+            
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Song operations
+                </mat-panel-title>
+                <mat-panel-description>
+                    Manage songs
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-panel-description>
+                <button mat-button color="primary" (click)="openAddSongDialog()">Add song</button>
+            </mat-panel-description>
+
+            <mat-panel-description>
+                <button mat-button color="primary" (click)="openGetSongDialog()">Get/Edit song</button>
+            </mat-panel-description>
+
+            <mat-panel-description>
+                <button mat-button color="primary" (click)="openDeleteSongDialog()">Delete song</button>
+            </mat-panel-description>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

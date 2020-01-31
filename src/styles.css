@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 html,
 body {
     height: 100%;
@@ -21,6 +21,10 @@ body {
 
 .sub-header {
     font-size: 16px;
+}
+
+.section-header{
+    font-size:22px;
 }
 
 
@@ -49,7 +53,7 @@ body {
 .nav-drawer {
     width: 20%;
 }
-
+    
 /* Forms */
 .example-form {
     min-width: 150px;
@@ -70,4 +74,28 @@ body {
 
 .example-actions {
     text-align: right;
+}
+
+/*Tables*/
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+/*Spinner*/
+
+.spinner-wrapper{
+    width: 100px;
+	height: 100px;
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
 }

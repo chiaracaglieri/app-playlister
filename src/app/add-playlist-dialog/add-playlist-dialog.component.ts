@@ -12,7 +12,7 @@ import { PlaylistService } from '../playlist.service';
 export class AddPlaylistDialogComponent implements OnInit {
   addPlaylistForm: FormGroup ;
 
-  constructor(private router: Router,private formBuilder: FormBuilder, private playlistService: PlaylistService) { 
+  constructor(private router: Router,private formBuilder: FormBuilder, private playlistService: PlaylistService, private userService: UserService) { 
     this.addPlaylistForm = this.formBuilder.group({
       name: ''
     });
@@ -25,7 +25,17 @@ export class AddPlaylistDialogComponent implements OnInit {
     
     this.playlistService.createPlaylist(addPlaylistData.get("name").value).subscribe(
       (response) => {
-        console.log(response);
+        this.userService.getUser(this.userService.loggedUser.email).subscribe(
+          (response) => {
+            if(response.status === 200){
+              let json: JSON = response.body;
+              this.userService.loggedUser = json['data'];
+            }
+            else{
+    
+            }
+          }
+         );
       }
     );
 

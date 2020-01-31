@@ -1,0 +1,17 @@
+<div class="header">{{ this.data.song.track_name}} </div>
+<div class="sub-header">{{ this.data.song.artist_name}}</div>
+<br><br>
+<form class="example-form" [formGroup]="addToPlaylistForm" (ngSubmit)="onSubmit(addToPlaylistForm)">
+    <mat-form-field class="example-full-width">
+        <mat-label>Add to playlist:</mat-label>
+        <mat-select formControlName="playlist" required>
+            <mat-option *ngFor="let playlist of this.userService.loggedUser.playlists" [value]="playlist.name">
+                {{playlist.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit" >Add</button>
+    </div>
+    <button mat-button color="primary" mat-dialog-close>Close</button>
+</form>

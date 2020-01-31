@@ -1,5 +1,7 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="!loading">
     <mat-card-title>Log in</mat-card-title>
+    <span *ngIf="loginError" style="color:brown">Error: credentials invalid!</span>
+    <br>
     <mat-card-content>
         <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
             <mat-form-field class="example-full-width">
@@ -7,7 +9,6 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Password" type="password" formControlName="password">
-                <span *ngIf="loginError">Error: credentials invalid!</span> <!--FIXME-->
             </mat-form-field>
             <div class="example-actions">
                 <button mat-flat-button color="primary" type="submit">Log in</button>
@@ -16,3 +17,7 @@
         </form>
     </mat-card-content>
 </mat-card>
+
+<div class="spinner-wrapper" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>

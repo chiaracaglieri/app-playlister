@@ -1,0 +1,35 @@
+<span class="header">Delete Song</span>
+<form class="example-form" [formGroup]="getUserForm" (ngSubmit)="onSubmit(getUserForm)">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+
+    <div class="example-actions">
+        <button mat-flat-button color="primary" type="submit">Submit</button>
+        <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    </div>
+</form>
+
+<mat-card *ngIf="loadedUser!=null">
+    <mat-card-title>{{loadedUser.email}}</mat-card-title>
+    <mat-card-content>
+        <form class="example-form" [formGroup]="changeUserRoleForm" (ngSubmit)="onSubmitUpdate(changeUserRoleForm)">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Role</mat-label>
+                <mat-select [(ngModel)]="loadedUser.role" formControlName="role" required>
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{role}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <div class="example-actions">
+                <button mat-flat-button color="primary" type="submit" mat-dialog-close>Update</button>
+            </div>
+        </form>
+
+    </mat-card-content>
+</mat-card>
