@@ -40,13 +40,8 @@ export class BrowseOverviewComponent implements OnInit {
   refreshExploreSongs(){
     this.songService.getRandomSongs(10).subscribe(
       (response) => {
-        if (response.status === 200) {
           let json: JSON = response.body;
           this.exploreSongsList = json['data'];
-        }
-        else {
-
-        }
       }
     );
   }
