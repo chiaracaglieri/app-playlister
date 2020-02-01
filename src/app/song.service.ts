@@ -24,7 +24,14 @@ export class SongService {
   }
 
   getSong(track_id: string, track_name: string, artist_name: string){
-    let request = this.baseUrl + "songManager/getSong?artistName="+ artist_name +"&trackId="+ track_id +"&trackName="+ track_name;
+    let request;
+    if(track_id!=null && track_id!=""){
+      request = this.baseUrl + "songManager/getSong?trackId="+ track_id;
+    }
+    else{
+      request = this.baseUrl + "songManager/getSong?artistName="+ artist_name +"&trackName="+ track_name;
+    }
+
     return this.http.get<JSON>(request, {observe: 'response'});
   }
 
