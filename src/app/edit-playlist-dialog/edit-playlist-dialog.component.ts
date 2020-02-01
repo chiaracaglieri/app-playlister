@@ -12,9 +12,11 @@ import {MAT_DIALOG_DATA} from '@angular/material'
 })
 export class EditPlaylistDialogComponent implements OnInit {
   editPlaylistForm: FormGroup ;
+  playlistName: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private playlistService: PlaylistService, 
     private userService: UserService) {
+      this.playlistName=this.data.playlist.name;
     this.editPlaylistForm = this.formBuilder.group({
       name: this.data.playlist.name
     });
@@ -25,7 +27,7 @@ export class EditPlaylistDialogComponent implements OnInit {
 
   onSubmit(editPlaylistData: FormGroup ){
     console.log(editPlaylistData);
-    this.playlistService.updatePlaylist(editPlaylistData.get("name").value, this.data.playlist.name).subscribe(
+    this.playlistService.updatePlaylist(this.playlistName, editPlaylistData.get("name").value).subscribe(
       (response) => {
         if(response != null){
            this.userService.getUser(this.userService.loggedUser.email).subscribe(
@@ -33,6 +35,7 @@ export class EditPlaylistDialogComponent implements OnInit {
               if(response.status === 200){
                 let json: JSON = response.body;
                 this.userService.loggedUser = json['data'];
+                this.playlistService.selectedPlaylistName=editPlaylistData.get("name").value;
               }
               else{
 

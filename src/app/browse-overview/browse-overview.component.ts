@@ -78,9 +78,6 @@ export class BrowseOverviewComponent implements OnInit {
         (response) => {
           let json: JSON = response.body;
           this.loadedSongs = json["data"];
-          // this.SONG_DATA = this.loadedSongs;
-          // this.dataSource = new MatTableDataSource(this.SONG_DATA);
-          // this.dataSource.paginator = this.paginator;
         },
         (error) => {
           this.showSearchError = true;

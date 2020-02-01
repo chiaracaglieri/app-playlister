@@ -32,7 +32,7 @@ export class PlaylistService {
     return this.http.delete<JSON>(request, {observe: 'response'});
   }
 
-  updatePlaylist(newName: string, oldName: string){
+  updatePlaylist(oldName: string, newName: string){
     let request = this.baseUrl + "playlistManager/updatePlaylist?email="+this.userService.loggedUser.email+"&playlistNewName="+ newName +"&playlistOldName="+oldName;
     return this.http.put<JSON>(request, {observe: 'response'});
   }
