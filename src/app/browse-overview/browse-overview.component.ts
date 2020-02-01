@@ -34,7 +34,9 @@ export class BrowseOverviewComponent implements OnInit {
         let json: JSON = response.body;
         this.suggestedSongsList = json['data'];
         this.refreshExploreSongs();
-        this.loading=false;
+      },
+      (error) => {
+        this.refreshExploreSongs();
       }
     );
 

@@ -27,7 +27,10 @@ export class UserService {
   }
 
   userHasSongs(): boolean{
-    let playlists=this.getPlaylists();
+    if(this.loggedUser.playlists==null){
+      return false;
+    }
+    let playlists=this.loggedUser.playlists;
     for(let playlist of playlists){
       if(playlist.songs!=null){
         return true;
