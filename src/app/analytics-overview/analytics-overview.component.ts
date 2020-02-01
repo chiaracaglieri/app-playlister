@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Region } from '../shared/model/Region';
 import { PlaylistService } from '../playlist.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-analytics-overview',
@@ -18,13 +19,17 @@ export class AnalyticsOverviewComponent implements OnInit {
   genreResult: string[];
   songResult: { "track_name": string }[];
 
+  totalNumberOfUsers: number;
+  mostFrequentGender: string;
+  mostFrequentRegion: string;
+
   genders = [ 
     {value:"FEMALE", displayedValue:"Female"}, 
     {value:"MALE", displayedValue:"Male" }, 
     {value:"OTHER", displayedValue:"Other"}];
 
     countries: Region = new Region();
-  constructor(private formBuilder: FormBuilder, private playlistService: PlaylistService,
+  constructor(private formBuilder: FormBuilder, public userService: UserService, private playlistService: PlaylistService,
     @Inject(LOCALE_ID) public locale: string) { 
     this.filterTopArtistsForm = this.formBuilder.group({
       region: '',
@@ -47,6 +52,27 @@ export class AnalyticsOverviewComponent implements OnInit {
       maxBirthday: '',
       limit: ''
     })
+
+    this.userService.getNumberOfUsers().subscribe(
+      (response) => {
+        let json: JSON = response.body;
+        this.totalNumberOfUsers=json["data"];
+
+        this.userService.getMostCommonGender().subscribe(
+          (response) => {
+            let json: JSON = response.body;
+            this.mostFrequentGender=json["data"];
+
+            this.userService.getMostCommonRegion().subscribe(
+              (response) => {
+                let json: JSON = response.body;
+                this.mostFrequentRegion=json["data"];
+              }
+            );
+          }
+        );
+      }
+    );
   }
 
   ngOnInit() {
@@ -110,5 +136,17 @@ export class AnalyticsOverviewComponent implements OnInit {
         }
       }
     );
+  }
+
+  clearSearchFields(formName: string){
+    if(formName=="filterTopArtistsForm"){
+      this.filterTopArtistsForm.reset();
+    }
+    else if(formName=="filterTopSongsForm"){
+      this.filterTopSongsForm.reset();
+    }
+    else if(formName=="filterTopGenresForm"){
+      this.filterTopGenresForm.reset();
+    }
   }
 }

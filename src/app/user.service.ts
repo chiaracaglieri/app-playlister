@@ -27,7 +27,10 @@ export class UserService {
   }
 
   userHasSongs(): boolean{
-    let playlists=this.getPlaylists();
+    if(this.loggedUser.playlists==null){
+      return false;
+    }
+    let playlists=this.loggedUser.playlists;
     for(let playlist of playlists){
       if(playlist.songs!=null){
         return true;
@@ -76,12 +79,28 @@ export class UserService {
 
   updateUserRole(userToUpdate: User, role: string){
     let request = this.baseUrl + "userManager/updateUser?email="+userToUpdate.email;
-    userToUpdate.role=role;
-    return this.http.put<JSON>(request, userToUpdate, {observe: 'response'});
+    let user: User = new User();
+    user.role=role;
+    return this.http.put<JSON>(request, user, {observe: 'response'});
   }
 
   deleteUser(email: string) {
     let request = this.baseUrl + "userManager/deleteUser?email="+ email;
     return this.http.delete<JSON>(request, {observe: 'response'});
+  }
+
+  getNumberOfUsers(){
+    let request = this.baseUrl + "userManager/getNumberOfUsers";
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
+
+  getMostCommonGender(){
+    let request = this.baseUrl + "userManager/getMostCommonGender";
+    return this.http.get<JSON>(request, {observe: 'response'});
+  }
+
+  getMostCommonRegion(){
+    let request = this.baseUrl + "userManager/getMostCommonRegion";
+    return this.http.get<JSON>(request, {observe: 'response'});
   }
 }

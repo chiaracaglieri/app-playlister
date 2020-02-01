@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { EditAccountDialogComponent } from '../edit-account-dialog/edit-account-dialog.component';
 import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
 import { DeleteAccountAlertComponent } from '../delete-account-alert/delete-account-alert.component';
+import { PlaylistService } from '../playlist.service';
 
 @Component({
   selector: 'app-account-overview',
@@ -13,12 +14,16 @@ import { DeleteAccountAlertComponent } from '../delete-account-alert/delete-acco
 })
 export class AccountOverviewComponent implements OnInit {
 
-  constructor(public userService: UserService, private router: Router, public dialog: MatDialog) { }
+  constructor(public userService: UserService, public playlistService: PlaylistService,private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
   logOut(){
     this.userService.loggedUser=null;
+    this.playlistService.selectedPlaylistName= null;
+    this.playlistService.dataSource=null;
+    this.playlistService.isPlaylistOverview=true;
+    this.playlistService.SONG_DATA=null;
     this.router.navigateByUrl('/login');
   }
 

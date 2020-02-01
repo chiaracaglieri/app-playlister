@@ -13,31 +13,31 @@ import { PlaylistService } from '../playlist.service';
 })
 export class PlaylistsOverviewComponent implements OnInit {
   topArtist: string;
-  selectedPlaylist: Playlist = null;
+  
   loading = false;
   constructor(public userService: UserService, public dialog: MatDialog, public playlistService: PlaylistService) {
-    this.loading=true;
+    this.loading = true;
     this.playlistService.getMostPopularArtist().subscribe(
       (response) => {
-          let json: JSON = response.body;
-          this.topArtist = json['data'];
+        let json: JSON = response.body;
+        this.topArtist = json['data'];
       }
     );
-    this.loading=false;
+    this.loading = false;
   }
-  
-ngOnInit() {
-}
 
-openAddPlaylistDialog(){
-  const dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
-    width: '400px'
-  });
-}
+  ngOnInit() {
+  }
 
-openPlaylistDetail(playlist: Playlist){
-  this.playlistService.isPlaylistOverview = false;
-  this.selectedPlaylist=playlist;
-}
+  openAddPlaylistDialog() {
+    const dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
+      width: '400px'
+    });
+  }
+
+  openPlaylistDetail(playlist: Playlist) {
+    this.playlistService.isPlaylistOverview = false;
+    this.playlistService.selectedPlaylistName=playlist.name;
+  }
 
 }

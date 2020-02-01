@@ -24,7 +24,14 @@ export class SongService {
   }
 
   getSong(track_id: string, track_name: string, artist_name: string){
-    let request = this.baseUrl + "songManager/getSong?artistName="+ artist_name +"&trackId="+ track_id +"&trackName="+ track_name;
+    let request;
+    if(track_id!=null && track_id!=""){
+      request = this.baseUrl + "songManager/getSong?trackId="+ track_id;
+    }
+    else{
+      request = this.baseUrl + "songManager/getSong?artistName="+ artist_name +"&trackName="+ track_name;
+    }
+
     return this.http.get<JSON>(request, {observe: 'response'});
   }
 
@@ -60,5 +67,10 @@ export class SongService {
   addToPlaylist(song: Song, name: string){
     let request = this.baseUrl + "songManager/addSongToPlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ name+"&trackId="+song.track_id;
     return this.http.put<JSON>(request, {observe: 'response'});
+  }
+
+  deleteSongFromPlaylist(playlist: string, trackId: string){
+    let request = this.baseUrl + "songManager/deleteSongFromPlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ playlist+"&trackId="+trackId;
+    return this.http.delete<JSON>(request, {observe: 'response'});
   }
 }

@@ -1,12 +1,37 @@
 <div class="main-container">
-    <!-- <form class="example-form" [formGroup]="searchForm">
-        <input type="search" placeholder="Search..." [formControlName]="search"  (keyup.enter)="onEnter()" >
-    </form> -->
-    <div *ngIf="userService.userHasSongs()">
-        <span class="header">Suggested for you</span>
+    <div *ngIf="!loading">
+        <span class="header">Search</span>
         <br>
-        <mat-grid-list cols="5" rowHeight="2:1">
-            <mat-grid-tile *ngFor="let song of suggestedSongsList">
+        <form class="example-form" [formGroup]="searchSongForm" (ngSubmit)="onSubmit(searchSongForm)">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Track name" formControlName="track_name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Artist name" formControlName="artist_name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Genre</mat-label>
+                <mat-select formControlName="genre">
+                    <mat-option *ngFor="let genre of genres" [value]="genre">
+                        {{genre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <div *ngIf="showSearchError" style="color:brown">Search error: check the fields above and retry</div>
+            <br>
+            <div class="example-actions">
+                <button mat-flat-button color="primary" type="submit">Search</button>
+            </div>
+        </form>
+        <div class="example-actions" *ngIf="loadedSongs!=null">
+            <button mat-button color="primary" (click)="eraseSongList()">Clear</button>
+        </div>
+
+
+        <mat-grid-list cols="5" rowHeight="2:1" *ngIf="loadedSongs!=null">
+            <mat-grid-tile *ngFor="let song of loadedSongs">
                 <mat-card class="playlist-card" (click)="openSongDetailDialog(song)">
                     <mat-card-content>
                         <b>{{ song.track_name }}</b> - {{ song.artist_name }}
@@ -14,21 +39,38 @@
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>
+        <div *ngIf="userService.userHasSongs()">
+            <span class="header">Suggested for you</span>
+            <br>
+            <mat-grid-list cols="5" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let song of suggestedSongsList">
+                    <mat-card class="playlist-card" (click)="openSongDetailDialog(song)">
+                        <mat-card-content>
+                            <b>{{ song.track_name }}</b> - {{ song.artist_name }}
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <span class="header">Explore</span>
+        <div class="example-actions">
+            <button mat-icon-button (click)="refreshExploreSongs()">
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </div>
+        <mat-grid-list cols="5" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let song of exploreSongsList">
+                <mat-card class="playlist-card" (click)="openSongDetailDialog(song)">
+                    <mat-card-content>
+                        <b>{{ song.track_name }}</b> - {{ song.artist_name }}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <br>
     </div>
-    <span class="header">Explore</span>
-    <div class="example-actions">
-        <button mat-icon-button (click)="refreshExploreSongs()">
-            <mat-icon>refresh</mat-icon>
-        </button>
+
+    <div class="spinner-wrapper" *ngIf="loading">
+        <mat-spinner></mat-spinner>
     </div>
-    <mat-grid-list cols="5" rowHeight="2:1">
-        <mat-grid-tile *ngFor="let song of exploreSongsList">
-            <mat-card class="playlist-card" (click)="openSongDetailDialog(song)">
-                <mat-card-content>
-                    <b>{{ song.track_name }}</b> - {{ song.artist_name }}
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-    <br>
 </div>

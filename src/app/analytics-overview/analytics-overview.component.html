@@ -48,6 +48,11 @@
                   <button mat-flat-button color="primary" type="submit">Apply</button>
               </div>
           </form>
+
+          <div class="example-actions">
+            <button mat-button color="primary" (click)="clearSearchFields('filterTopArtistsForm')">Clear search fields</button>
+         </div>
+
       
           <div *ngIf="artistResult!=[]">
               <div *ngFor="let artist of artistResult">
@@ -103,6 +108,9 @@
                 </div>
             </form>
         
+            <div class="example-actions">
+                <button mat-button color="primary" (click)="clearSearchFields('filterTopSongsForm')">Clear search fields</button>
+             </div>
             <div *ngIf="songResult!=[]">
                 <div *ngFor="let song of songResult">
                     {{ song.track_name }}
@@ -158,7 +166,11 @@
                     <button mat-flat-button color="primary" type="submit">Apply</button>
                 </div>
             </form>
-        
+
+            <div class="example-actions">
+                <button mat-button color="primary" (click)="clearSearchFields('filterTopGenresForm')">Clear search fields</button>
+             </div>
+
             <div *ngIf="genreResult!=[]">
                 <div *ngFor="let genre of genreResult">
                     {{ genre }}
@@ -175,24 +187,37 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              User population
+              Total number of users
             </mat-panel-title>
             <mat-panel-description>
-              Get top artists within user and specify filters
+              Get the current total number of users of Playlister
             </mat-panel-description>
           </mat-expansion-panel-header>
+          Total number of users: {{ totalNumberOfUsers}}
         </mat-expansion-panel>
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Total number of users
+                Most frequent gender
               </mat-panel-title>
               <mat-panel-description>
-                Get top artists within user and specify filters
+                Get the most frequent gender within users of Playlister
               </mat-panel-description>
             </mat-expansion-panel-header>
+            Most frequent gender: {{ mostFrequentGender}}
           </mat-expansion-panel>
 
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Most frequent country
+              </mat-panel-title>
+              <mat-panel-description>
+                Get the most frequent country of origin within users of Playlister
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            Most frequent country: {{ mostFrequentRegion}}
+          </mat-expansion-panel>
       </mat-accordion>
 </div>

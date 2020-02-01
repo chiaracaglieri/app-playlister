@@ -13,24 +13,34 @@ import { UserService } from '../user.service';
 })
 export class BrowseOverviewComponent implements OnInit {
 
-  searchForm: FormGroup ;
+  searchSongForm: FormGroup ;
   exploreSongsList: Song[];
   suggestedSongsList: Song[];
+  loading=false;
+  showSearchError = false;
+  loadedSongs: Song[];
 
   constructor(private formBuilder: FormBuilder, public songService: SongService,
     public dialog: MatDialog, public userService: UserService) { 
-    this.searchForm = this.formBuilder.group({
-      search: ''
-    });
+      this.loading=true;
 
+    this.searchSongForm = this.formBuilder.group({
+        track_name: '',
+        artist_name: '',
+        genre: ''
+      });
     this.songService.getSongsSuggestions(10,20).subscribe(
       (response) => {
         let json: JSON = response.body;
         this.suggestedSongsList = json['data'];
+        this.refreshExploreSongs();
+      },
+      (error) => {
+        this.refreshExploreSongs();
       }
     );
 
-    this.refreshExploreSongs();
+    
 
   }
 
@@ -38,10 +48,12 @@ export class BrowseOverviewComponent implements OnInit {
   }
 
   refreshExploreSongs(){
+    this.loading=true;
     this.songService.getRandomSongs(10).subscribe(
       (response) => {
           let json: JSON = response.body;
           this.exploreSongsList = json['data'];
+          this.loading=false;
       }
     );
   }
@@ -55,8 +67,28 @@ export class BrowseOverviewComponent implements OnInit {
     });
   }
 
-  onEnter(){
+  onSubmit(addSongData: FormGroup){
+    console.log(addSongData);
+    if(addSongData.get("track_name").value=="" &&
+      addSongData.get("artist_name").value=="" &&
+      addSongData.get("genre").value==""){
+        this.showSearchError = true;
+      }
+    this.songService.getSongs( (addSongData.get("artist_name").value==""? null: addSongData.get("artist_name").value),
+    (addSongData.get("track_name").value=="" ? null: addSongData.get("track_name").value),
+    (addSongData.get("genre").value=="" ? null: addSongData.get("genre").value) ).subscribe(
+        (response) => {
+          let json: JSON = response.body;
+          this.loadedSongs = json["data"];
+        },
+        (error) => {
+          this.showSearchError = true;
+        }
+      );
+  }
 
+  eraseSongList(){
+    this.loadedSongs = null;
   }
 
 }
