@@ -1,6 +1,6 @@
 <mat-card class="example-card" *ngIf="!loading">
     <mat-card-title>Log in</mat-card-title>
-    <span *ngIf="loginError" style="color:brown">Error: credentials invalid!</span>
+    <span *ngIf="showError" style="color:brown">Error: credentials invalid!</span>
     <br>
     <mat-card-content>
         <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
