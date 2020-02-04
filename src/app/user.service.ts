@@ -46,7 +46,7 @@ export class UserService {
 
   getUser(email: string){
     let request = this.baseUrl + "userManager/getUser?email=" + email;
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   createUser(registerData: FormGroup){
@@ -61,7 +61,7 @@ export class UserService {
     user.gender = registerData.get("gender").value;
     user.region = registerData.get("region").value;
     user.role = "USER";
-    return this.http.post<JSON>(request, user, {observe: 'response'});
+    return this.http.post<JSON>(request, user, {headers: headers, observe: 'response'});
   }
 
   updateUser(oldEmail: string, accountData: FormGroup){
@@ -79,33 +79,33 @@ export class UserService {
       user.region = accountData.get("region").value;
     }
 
-    return this.http.put<JSON>(request, user, {observe: 'response'});
+    return this.http.put<JSON>(request, user, {headers: headers, observe: 'response'});
   }
 
   updateUserRole(userToUpdate: User, role: string){
     let request = this.baseUrl + "userManager/updateUser?email="+userToUpdate.email;
     let user: User = new User();
     user.role=role;
-    return this.http.put<JSON>(request, user, {observe: 'response'});
+    return this.http.put<JSON>(request, user, {headers: headers, observe: 'response'});
   }
 
   deleteUser(email: string) {
     let request = this.baseUrl + "userManager/deleteUser?email="+ email;
-    return this.http.delete<JSON>(request, {observe: 'response'});
+    return this.http.delete<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getNumberOfUsers(){
     let request = this.baseUrl + "userManager/getNumberOfUsers";
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getMostCommonGender(){
     let request = this.baseUrl + "userManager/getMostCommonGender";
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getMostCommonRegion(){
     let request = this.baseUrl + "userManager/getMostCommonRegion";
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 }
