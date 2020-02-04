@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { User } from './shared/model/User';
 import { Playlist } from './shared/model/Playlist';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user.service';
 import { Song } from './shared/model/Song';
 
+const headers = new HttpHeaders({
+  authorization : 'Basic ' + btoa('administrator@playlister.com' + ':' + 'password')
+});
 @Injectable({
   providedIn: 'root',
 })
@@ -24,22 +27,22 @@ export class PlaylistService {
 
   createPlaylist(name: string){
     let request = this.baseUrl + "playlistManager/createPlaylist?email=" + this.userService.loggedUser.email + "&playlistName=" + name;
-    return this.http.post(request, {observe: 'response'});
+    return this.http.post(request, {headers: headers, observe: 'response'});
   }
 
   deletePlaylist(name: string) {
     let request = this.baseUrl + "playlistManager/deletePlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ name;
-    return this.http.delete<JSON>(request, {observe: 'response'});
+    return this.http.delete<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   updatePlaylist(oldName: string, newName: string){
     let request = this.baseUrl + "playlistManager/updatePlaylist?email="+this.userService.loggedUser.email+"&playlistNewName="+ newName +"&playlistOldName="+oldName;
-    return this.http.put<JSON>(request, {observe: 'response'});
+    return this.http.put<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getMostPopularArtist(){
     let request = this.baseUrl + "playlistManager/getMostPopularArtist?email=" + this.userService.loggedUser.email;
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getTopArtists(limit: number, minBirthday: string, maxBirthday: string, gender: string, region: string){
@@ -56,7 +59,7 @@ export class PlaylistService {
     if(region!= null && region.length>0){
       request= request+ "&region=" + region;
     }
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getTopSongs(limit: number, minBirthday: string, maxBirthday: string, gender: string, region: string){
@@ -73,7 +76,7 @@ export class PlaylistService {
     if(region!= null && region.length>0){
       request= request+ "&region=" + region;
     }
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 
   getTopGenres(limit: number, minBirthday: string, maxBirthday: string, gender: string, region: string){
@@ -90,6 +93,6 @@ export class PlaylistService {
     if(region!= null && region.length>0){
       request= request+ "&region=" + region;
     }
-    return this.http.get<JSON>(request, {observe: 'response'});
+    return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 }
