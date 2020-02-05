@@ -1,8 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material'
+import { Component, Inject, OnDestroy } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material'
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { PlaylistService } from '../playlist.service';
 import { SongService } from '../song.service';
 
 @Component({
@@ -10,32 +9,30 @@ import { SongService } from '../song.service';
   templateUrl: './song-detail-dialog.component.html',
   styleUrls: ['./song-detail-dialog.component.css']
 })
-export class SongDetailDialogComponent implements OnInit {
-  addToPlaylistForm: FormGroup ;
+export class SongDetailDialogComponent implements OnDestroy {
+  addToPlaylistForm: FormGroup;
+  changed: boolean = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, public userService: UserService, public songService: SongService ) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, public userService: UserService, public songService: SongService) {
     this.addToPlaylistForm = this.formBuilder.group({
       playlist: ''
     });
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.changed=false;
   }
 
-  onSubmit(addToPlaylistForm: FormGroup){
+  onSubmit(addToPlaylistForm: FormGroup) {
     this.songService.addToPlaylist(this.data.song, addToPlaylistForm.get("playlist").value).subscribe(
-      (response)=>{
+      (response) => {
         this.userService.getUser(this.userService.loggedUser.email).subscribe(
           (response) => {
-            if(response.status === 200){
-              let json: JSON = response.body;
-              this.userService.loggedUser = json['data'];
-            }
-            else{
-    
-            }
+            let json: JSON = response.body;
+            this.userService.loggedUser = json['data'];
+            this.changed=true;
           }
-         );
+        );
       }
     )
   }

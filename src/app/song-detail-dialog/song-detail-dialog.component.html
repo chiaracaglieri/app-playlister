@@ -1,7 +1,7 @@
 <div class="header">{{ this.data.song.track_name}} </div>
 <div class="sub-header">{{ this.data.song.artist_name}}</div>
 <br><br>
-<form class="example-form" [formGroup]="addToPlaylistForm" (ngSubmit)="onSubmit(addToPlaylistForm)">
+<form class="example-form" [formGroup]="addToPlaylistForm" (ngSubmit)="onSubmit(addToPlaylistForm)" *ngIf="!changed">
     <mat-form-field class="example-full-width">
         <mat-label>Add to playlist:</mat-label>
         <mat-select formControlName="playlist" required>
@@ -15,3 +15,10 @@
     </div>
     <button mat-button color="primary" mat-dialog-close>Close</button>
 </form>
+
+<div *ngIf="changed">
+    Song added successfully
+    <div class="example-actions">
+        <button mat-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</div>

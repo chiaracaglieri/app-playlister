@@ -10,8 +10,15 @@ import { UserService } from '../user.service';
 export class NavigationComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
+
   activeTab = 3;
-  constructor(private router: Router, public userService: UserService) { }
+  constructor(private router: Router, public userService: UserService) {
+    if(userService.loggedUser.role==='ADMIN'){
+      this.activeTab=5;
+    } else if (this.userService.loggedUser.role==='SUPERUSER'){
+      this.activeTab=4;
+    }
+   }
 
   toggleDrawer() {
     this.opened = !this.opened;

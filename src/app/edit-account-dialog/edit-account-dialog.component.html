@@ -1,6 +1,6 @@
 <div class="header">Edit account details</div>
 <br><br>
-<form class="example-form" [formGroup]="editAccountForm" (ngSubmit)="onSubmit(editAccountForm)">
+<form class="example-form" [formGroup]="editAccountForm" (ngSubmit)="onSubmit(editAccountForm)" *ngIf="!changed">
     <mat-form-field class="example-full-width">
         <input matInput placeholder="E-mail" [(ngModel)]="this.userService.loggedUser.email" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -27,7 +27,14 @@
         </mat-select>
     </mat-form-field>
     <div class="example-actions">
-        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Submit</button>
+        <button mat-flat-button color="primary" type="submit">Submit</button>
         <button mat-button color="primary" mat-dialog-close>Close</button>
     </div>
 </form>
+
+<div *ngIf="changed">
+    Account updated successfully
+    <div class="example-actions">
+        <button mat-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</div>
