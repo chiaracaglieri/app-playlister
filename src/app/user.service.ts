@@ -28,6 +28,7 @@ export class UserService {
 
   loadUserDetail(email: String, password: String){
     let request = this.baseUrl + "userManager/login?email=" + email + "&password=" + password;
+    console.log(headers);
     return this.http.get<JSON>(request, {headers: headers, observe: 'response'});
   }
 

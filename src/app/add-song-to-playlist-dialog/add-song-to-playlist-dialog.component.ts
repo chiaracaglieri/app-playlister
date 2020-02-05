@@ -119,4 +119,9 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
       }
     );
   }
+
+  clearSearchFields(){
+      this.addSongForm.reset();
+  }
+
 }

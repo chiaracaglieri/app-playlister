@@ -23,6 +23,11 @@
         <button mat-button color="primary" mat-dialog-close>Cancel</button>
     </div>
 </form>
+
+<div class="example-actions">
+  <button mat-button color="primary" (click)="clearSearchFields()">Clear search fields</button>
+</div>
+
 <div *ngIf="loadedSongs!=null">
     <div class="header">Songs matching filters: </div>
 
