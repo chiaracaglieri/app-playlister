@@ -21,9 +21,13 @@ export class PlaylistsOverviewComponent implements OnInit {
       (response) => {
         let json: JSON = response.body;
         this.topArtist = json['data'];
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
       }
     );
-    this.loading = false;
+    
   }
 
   ngOnInit() {
@@ -38,6 +42,16 @@ export class PlaylistsOverviewComponent implements OnInit {
   openPlaylistDetail(playlist: Playlist) {
     this.playlistService.isPlaylistOverview = false;
     this.playlistService.selectedPlaylistName=playlist.name;
+  }
+
+  getTopArtist(): string{
+    this.playlistService.getMostPopularArtist().subscribe(
+      (response) => {
+        let json: JSON = response.body;
+        this.topArtist = json['data'];
+      }
+    );
+    return this.topArtist;
   }
 
 }
