@@ -85,8 +85,8 @@ export class PlaylistDetailComponent implements OnInit {
   openAddSongToPlaylistDialog() {
     let name = this.playlistName;
     const dialogRef = this.dialog.open(AddSongToPlaylistDialogComponent, {
-      width: '900px',
-      height: '600px',
+      width: '700px',
+      height: '500px',
       data: {
         playlist: this.userService.loggedUser.playlists.filter(function(p) {
           return p.name === name;
