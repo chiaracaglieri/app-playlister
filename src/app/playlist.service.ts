@@ -41,7 +41,7 @@ export class PlaylistService {
 
   updatePlaylist(oldName: string, newName: string){
     let request = this.baseUrl + "playlistManager/updatePlaylist?email="+this.userService.loggedUser.email+"&playlistNewName="+ newName +"&playlistOldName="+oldName;
-    return this.http.put<JSON>(request, {headers: headers, observe: 'response'});
+    return this.http.put<JSON>(request, null, {headers: headers, observe: 'response'});
   }
 
   getMostPopularArtist(){

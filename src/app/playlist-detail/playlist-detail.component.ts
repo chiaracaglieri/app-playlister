@@ -32,7 +32,7 @@ export class PlaylistDetailComponent implements OnInit {
 
   constructor(private router: Router, public dialog: MatDialog, public playlistService: PlaylistService,
     public songService: SongService, public userService: UserService) {
-
+      
   }
 
 
