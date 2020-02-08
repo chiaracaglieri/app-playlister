@@ -138,4 +138,13 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
       this.addSongForm.reset();
   }
 
+  songNotInPlaylist(song: Song): boolean{
+    for(let i in this.playlist.songs){
+      if(this.playlist.songs[i].track_id===song.track_id){
+        return false;
+      }
+    }
+    return true;
+  }
+
 }
