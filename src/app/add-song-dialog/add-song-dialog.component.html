@@ -1,52 +1,121 @@
 <span class="header">Add Song</span>
-<form class="example-form" [formGroup]="addSongForm" (ngSubmit)="onSubmit(addSongForm)">
+<div *ngIf="insertedSong==null && errorMessage==null && !loading">
+    <form class="example-form" [formGroup]="addSongForm" (ngSubmit)="onSubmit(addSongForm)">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Track name" formControlName="track_name" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Artist name" formControlName="artist_name" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Duration(ms)" type="number" formControlName="duration_ms" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="genre">
+                <mat-option *ngFor="let genre of genres" [value]="genre">
+                    {{genre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Acousticness" step="0.01" min="0" max="1" type="number"
+                [formControl]="acousticness" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Danceability" step="0.01" min="0" max="1" type="number"
+                [formControl]="danceability" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Energy" step="0.01" min="0" max="1" type="number" [formControl]="energy"
+                required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Instrumentalness" step="0.01" min="0" max="1" type="number"
+                [formControl]="instrumentalness" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Liveness" step="0.01" min="0" max="1" type="number" [formControl]="liveness"
+                required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Loudness" step="0.01" min="-100" max="100" type="number"
+                [formControl]="loudness" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Speechiness" step="0.01" min="0" max="1" type="number"
+                [formControl]="speechiness" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Tempo" step="0.01" min="0" max="300" type="number" [formControl]="tempo"
+                required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Valence" step="0.01" min="0" max="1" type="number" [formControl]="valence"
+                required>
+        </mat-form-field>
+        <div class="example-actions">
+            <button mat-flat-button color="primary" type="submit" [disabled]="addSongForm.invalid">Add</button>
+            <button mat-button color="primary" mat-dialog-close>Cancel</button>
+        </div>
+    </form>
+</div>
+<div *ngIf="insertedSong!=null">
+    Song added successfully:
+    <br> <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Track name" [value]="insertedSong.track_name" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Artist name" [value]="insertedSong.artist_name" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Track id" [value]="insertedSong.track_id" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Duration(ms)" [value]="insertedSong.duration_ms" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Genre" [value]="insertedSong.genre" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Acousticness" [value]="insertedSong.acousticness" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Danceability" [value]="insertedSong.danceability" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Energy" [value]="insertedSong.energy" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Instrumentalness" [value]="insertedSong.instrumentalness" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Liveness" [value]="insertedSong.liveness" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Loudness" [value]="insertedSong.loudness" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Speechiness" [value]="insertedSong.speechiness" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Tempo" [value]="insertedSong.tempo" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Valence" [value]="insertedSong.valence" disabled>
+    </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Track name" formControlName="track_name" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Artist name" formControlName="artist_name" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Duration(ms)" type="number" formControlName="duration_ms" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Genre</mat-label>
-        <mat-select formControlName="genre">
-            <mat-option *ngFor="let genre of genres" [value]="genre">
-                {{genre}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Acousticness" step="0.01" min="0" max="1" type="number" [formControl]="acousticness" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Danceability" step="0.01" min="0" max="1" type="number" [formControl]="danceability" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Energy" step="0.01" min="0" max="1" type="number" [formControl]="energy" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Instrumentalness" step="0.01" min="0" max="1" type="number" [formControl]="instrumentalness" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Liveness" step="0.01" min="0" max="1" type="number" [formControl]="liveness" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Loudness" step="0.01" min="-100" max="100" type="number" [formControl]="loudness" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Speechiness" step="0.01" min="0" max="1" type="number" [formControl]="speechiness" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Tempo" step="0.01" min="0" max="300" type="number" [formControl]="tempo" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Valence" step="0.01" min="0" max="1" type="number" [formControl]="valence" required>
-    </mat-form-field>
     <div class="example-actions">
-        <button mat-flat-button color="primary" type="submit" mat-dialog-close>Add</button>
-        <button mat-button color="primary" mat-dialog-close>Cancel</button>
+        <button mat-button color="primary" mat-dialog-close>Close</button>
     </div>
-</form>
+</div>
+<div *ngIf="errorMessage!=null" class="error-message">
+    Error: {{ errorMessage }}
+    <div class="example-actions">
+        <button mat-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</div>
+<div class="spinner-wrapper" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
