@@ -14,7 +14,7 @@ export class AddSongDialogComponent implements OnInit {
   insertedSong: Song;
 
   addSongForm: FormGroup;
-  genres= [	"A Capella",
+  genres= [	null,"A Capella",
 	"Alternative",
 	"Anime",
 	"Blues",
@@ -96,9 +96,9 @@ export class AddSongDialogComponent implements OnInit {
             let json: JSON = response.body;
             this.insertedSong = json['data'];
             this.loading=false;
+            this.errorMessage=null;
         },
         (error) => {
-          console.log(error);
           let json: JSON = error.error;
           this.errorMessage = json['message'];
           this.loading=false;
