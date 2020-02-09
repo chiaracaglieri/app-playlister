@@ -11,7 +11,7 @@
     </div>
 </form>
 
-<mat-card *ngIf="loadedUser!=null && !loading && outcomeMessage == null">
+<mat-card *ngIf="loadedUser!=null && !loading && outcomeMessage == null  && errorMessage == null">
     <mat-card-title>{{loadedUser.email}}</mat-card-title>
     <mat-card-content>
         <form class="example-form" [formGroup]="deleteUserForm" (ngSubmit)="onSubmitDelete(deleteUserForm)">

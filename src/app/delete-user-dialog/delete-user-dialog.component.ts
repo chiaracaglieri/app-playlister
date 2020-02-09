@@ -60,7 +60,6 @@ export class DeleteUserDialogComponent implements OnInit {
     this.loading=true;
     this.userService.deleteUser(deleteUserData.get("email").value).subscribe(
         (response) => { 
-            let json: JSON = response.body;
             this.outcomeMessage="User successfully deleted."
             this.loading=false;
         },
