@@ -14,11 +14,11 @@
 
     <div class="example-actions">
         <button mat-flat-button color="primary" type="submit">Submit</button>
-        <button mat-button color="primary" mat-dialog-close>Cancel</button>
+        <button mat-button color="primary" mat-dialog-close>Close</button>
     </div>
 </form>
 
-<mat-card *ngIf="loadedSong!=null">
+<mat-card *ngIf="loadedSong!=null && !loading && outcomeMessage==null">
     <mat-card-title>{{loadedSong.track_name}} - {{loadedSong.artist_name}}</mat-card-title>
     <mat-card-content>
         <form class="example-form" [formGroup]="deleteSongForm" (ngSubmit)="onSubmitDelete(deleteSongForm)">
@@ -75,9 +75,21 @@
                 <input matInput placeholder="Valence" [(ngModel)]="loadedSong.valence" [formControl]="valence">
             </mat-form-field>
             <div class="example-actions">
-                <button mat-flat-button color="warn" type="submit" mat-dialog-close>Delete</button>
+                <button mat-flat-button color="warn" type="submit">Delete</button>
             </div>
         </form>
 
     </mat-card-content>
 </mat-card>
+
+<div *ngIf="errorMessage!=null" class="error-message">
+    Error: {{ errorMessage }}
+</div>
+
+<div *ngIf="outcomeMessage!=null">
+    {{ outcomeMessage }}
+</div>
+
+<div class="spinner-wrapper" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>

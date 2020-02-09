@@ -8,14 +8,18 @@ import { Song } from '../shared/model/Song';
   templateUrl: './delete-song-dialog.component.html',
   styleUrls: ['./delete-song-dialog.component.css']
 })
-export class DeleteSongDialogComponent implements OnInit {
+export class DeleteSongDialogComponent {
   getSongForm: FormGroup;
   deleteSongForm: FormGroup;
   loadedSong: Song;
+  errorMessage: string;
+  loading = false;
+  outcomeMessage: string;
 
   track_name = new FormControl({ value: '', disabled: true });
   artist_name = new FormControl({ value: '', disabled: true });
   track_id = new FormControl({ value: '', disabled: true });
+  genre = new FormControl({ value: '', disabled: true });
   acousticness = new FormControl({ value: '', disabled: true });
   danceability = new FormControl({ value: '', disabled: true });
   duration_ms = new FormControl({ value: '', disabled: true });
@@ -38,6 +42,7 @@ export class DeleteSongDialogComponent implements OnInit {
       track_name: this.track_name,
       artist_name: this.artist_name,
       track_id: this.track_id,
+      genre: this.genre,
       acousticness: this.acousticness,
       danceability: this.danceability,
       duration_ms: this.duration_ms,
@@ -51,30 +56,36 @@ export class DeleteSongDialogComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
-  onSubmit(getSongData: FormGroup){
-    this.songService.getSong( getSongData.get("track_id").value, getSongData.get("track_name").value,getSongData.get("artist_name").value).subscribe(
+  onSubmit(getSongData: FormGroup) {
+    this.loading=true;
+      this.songService.getSong(getSongData.get("track_id").value, getSongData.get("track_name").value, getSongData.get("artist_name").value).subscribe(
         (response) => {
-          if(response.status === 200){
             let json: JSON = response.body;
             this.loadedSong = json["data"];
-          } else {
-
-          }
+            this.loading=false;
+            this.errorMessage=null;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }
 
   onSubmitDelete(deleteSongData: FormGroup){
+    this.loading=true;
     this.songService.deleteSong(deleteSongData.get("track_id").value).subscribe(
         (response) => {
-          if(response.status === 200){
             let json: JSON = response.body;
-          } else {
-
-          }
+            this.outcomeMessage="Song successfully deleted";
+            this.loading=false;
+            this.errorMessage=null;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }

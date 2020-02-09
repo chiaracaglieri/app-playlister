@@ -18,7 +18,7 @@ export class GetSongDialogComponent {
 
   track_name = new FormControl({ value: ''});
   artist_name = new FormControl({ value: ''});
-  track_id = new FormControl({ value: '' });
+  track_id = new FormControl({ value: '' , disabled: true});
   genre = new FormControl({ value: ''});
   acousticness = new FormControl({ value: '', validators: [Validators.required, Validators.min(0), Validators.max(1)]});
   danceability = new FormControl({ value: '', validators: [Validators.required, Validators.min(0), Validators.max(1)]});
