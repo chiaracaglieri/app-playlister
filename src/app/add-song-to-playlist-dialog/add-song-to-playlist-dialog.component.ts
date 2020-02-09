@@ -29,7 +29,9 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
   showSearchError = false;
 
   loadedSongs: Song[];
-  
+
+  loading=false;
+
   genres= [	"A Capella",
 	"Alternative",
 	"Anime",
@@ -74,7 +76,7 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
 
 
   onSubmit(addSongData: FormGroup){
-    console.log(addSongData);
+    this.loading=true;
     if(addSongData.get("track_name").value=="" &&
       addSongData.get("artist_name").value=="" &&
       addSongData.get("genre").value==""){
@@ -89,11 +91,14 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
           this.SONG_DATA = this.loadedSongs;
           this.dataSource = new MatTableDataSource(this.SONG_DATA);
           this.dataSource.paginator = this.paginator;
+          this.loading=false;
         },
         (error) => {
           this.showSearchError = true;
+          this.loading=false;
         }
       );
+      
   }
 
   millisToMinutesAndSeconds(millis: number) {
@@ -103,6 +108,7 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
   }
 
   addToPlaylist(song: Song){
+    this.loading=true;
     this.songService.addToPlaylist(song, this.playlist.name).subscribe(
       (response)=>{
         this.userService.getUser(this.userService.loggedUser.email).subscribe(
@@ -114,9 +120,31 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
               return p.name === name;
             })[0].songs;
             this.playlistService.dataSource = new MatTableDataSource(this.playlistService.SONG_DATA);
+            this.loading=false;
+          },
+          (error) => {
+            this.loading=false;
           }
          );
+      },
+      (error) => {
+        this.loading=false;
       }
     );
+    
   }
+
+  clearSearchFields(){
+      this.addSongForm.reset();
+  }
+
+  songNotInPlaylist(song: Song): boolean{
+    for(let i in this.playlist.songs){
+      if(this.playlist.songs[i].track_id===song.track_id){
+        return false;
+      }
+    }
+    return true;
+  }
+
 }

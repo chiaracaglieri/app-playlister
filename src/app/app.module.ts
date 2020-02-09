@@ -31,7 +31,6 @@ import { DeleteAccountAlertComponent } from './delete-account-alert/delete-accou
 import { BrowseOverviewComponent } from './browse-overview/browse-overview.component';
 import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
 import {MatTableModule} from '@angular/material/table';
-import { SongDetailComponent } from './song-detail/song-detail.component';
 import { DeletePlaylistAlertComponent } from './delete-playlist-alert/delete-playlist-alert.component';
 import { SongDetailDialogComponent } from './song-detail-dialog/song-detail-dialog.component';
 import { EditPlaylistDialogComponent } from './edit-playlist-dialog/edit-playlist-dialog.component';
@@ -62,7 +61,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     DeleteAccountAlertComponent,
     BrowseOverviewComponent,
     PlaylistDetailComponent,
-    SongDetailComponent,
     DeletePlaylistAlertComponent,
     SongDetailDialogComponent,
     EditPlaylistDialogComponent,

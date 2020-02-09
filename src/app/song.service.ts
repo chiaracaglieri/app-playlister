@@ -70,7 +70,7 @@ export class SongService {
 
   addToPlaylist(song: Song, name: string){
     let request = this.baseUrl + "songManager/addSongToPlaylist?email="+this.userService.loggedUser.email+"&playlistName="+ name+"&trackId="+song.track_id;
-    return this.http.put<JSON>(request, {headers: headers, observe: 'response'});
+    return this.http.put<JSON>(request, null, {headers: headers, observe: 'response'});
   }
 
   deleteSongFromPlaylist(playlist: string, trackId: string){

@@ -96,27 +96,34 @@ export class BrowseOverviewComponent implements OnInit {
   }
 
   onSubmit(addSongData: FormGroup){
-    console.log(addSongData);
     if(addSongData.get("track_name").value=="" &&
       addSongData.get("artist_name").value=="" &&
       addSongData.get("genre").value==""){
         this.showSearchError = true;
       }
-    this.songService.getSongs( (addSongData.get("artist_name").value==""? null: addSongData.get("artist_name").value),
-    (addSongData.get("track_name").value=="" ? null: addSongData.get("track_name").value),
-    (addSongData.get("genre").value=="" ? null: addSongData.get("genre").value) ).subscribe(
-        (response) => {
-          let json: JSON = response.body;
-          this.loadedSongs = json["data"];
-        },
-        (error) => {
-          this.showSearchError = true;
-        }
-      );
+      else{
+        this.songService.getSongs( (addSongData.get("artist_name").value==""? null: addSongData.get("artist_name").value),
+        (addSongData.get("track_name").value=="" ? null: addSongData.get("track_name").value),
+        (addSongData.get("genre").value=="" ? null: addSongData.get("genre").value) ).subscribe(
+            (response) => {
+              let json: JSON = response.body;
+              this.loadedSongs = json["data"];
+            },
+            (error) => {
+              this.showSearchError = true;
+            }
+          );
+      }
   }
 
   eraseSongList(){
     this.loadedSongs = null;
+  }
+
+  clearSearchFields(formName: string){
+    if(formName=="searchSongForm"){
+      this.searchSongForm.reset();
+    }
   }
 
 }

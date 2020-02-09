@@ -19,7 +19,9 @@ export class PlaylistService {
   dataSource;
   
   baseUrl = "https://playlister-project.herokuapp.com/";
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService) { 
+    
+  }
 
   getPlaylists(): Playlist[]{
     return this.userService.loggedUser.playlists;
@@ -27,7 +29,9 @@ export class PlaylistService {
 
   createPlaylist(name: string){
     let request = this.baseUrl + "playlistManager/createPlaylist?email=" + this.userService.loggedUser.email + "&playlistName=" + name;
-    return this.http.post(request, {headers: headers, observe: 'response'});
+    console.log(headers);
+    
+    return this.http.post(request, null,{headers: headers, observe: 'response'});
   }
 
   deletePlaylist(name: string) {
@@ -37,7 +41,7 @@ export class PlaylistService {
 
   updatePlaylist(oldName: string, newName: string){
     let request = this.baseUrl + "playlistManager/updatePlaylist?email="+this.userService.loggedUser.email+"&playlistNewName="+ newName +"&playlistOldName="+oldName;
-    return this.http.put<JSON>(request, {headers: headers, observe: 'response'});
+    return this.http.put<JSON>(request, null, {headers: headers, observe: 'response'});
   }
 
   getMostPopularArtist(){

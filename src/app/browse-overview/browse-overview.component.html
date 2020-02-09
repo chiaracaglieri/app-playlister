@@ -25,6 +25,9 @@
                 <button mat-flat-button color="primary" type="submit">Search</button>
             </div>
         </form>
+        <div class="example-actions">
+            <button mat-button color="primary" (click)="clearSearchFields('searchSongForm')">Clear search fields</button>
+        </div>
         <div class="example-actions" *ngIf="loadedSongs!=null">
             <button mat-button color="primary" (click)="eraseSongList()">Clear</button>
         </div>

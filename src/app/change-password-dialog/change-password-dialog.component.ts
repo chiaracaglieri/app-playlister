@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
 
@@ -7,40 +7,32 @@ import { UserService } from '../user.service';
   templateUrl: './change-password-dialog.component.html',
   styleUrls: ['./change-password-dialog.component.css']
 })
-export class ChangePasswordDialogComponent implements OnInit {
-  changePasswordForm: FormGroup ;
+export class ChangePasswordDialogComponent implements OnDestroy {
+  changePasswordForm: FormGroup;
+  changed: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { 
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {
     this.changePasswordForm = this.formBuilder.group({
       newPassword: '',
       passwordConfirm: ''
     });
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.changed=false;
   }
 
-  onSubmit(changePasswordData: FormGroup ){
+  onSubmit(changePasswordData: FormGroup) {
     console.log(changePasswordData);
-   this.userService.updateUser(this.userService.loggedUser.email, changePasswordData).subscribe(
-    (response) => {
-      if(response.status === 200){
-         this.userService.getUser(this.userService.loggedUser.email).subscribe(
+    this.userService.updateUser(this.userService.loggedUser.email, changePasswordData).subscribe(
+      (response) => {
+        this.userService.getUser(this.userService.loggedUser.email).subscribe(
           (response) => {
-            if(response.status === 200){
-              let json: JSON = response.body;
-              this.userService.loggedUser = json['data'];
-            }
-            else{
-
-            }
-          }
-         );
-      } else {
-
+            let json: JSON = response.body;
+            this.userService.loggedUser = json['data'];
+            this.changed=true;
+          });
       }
-    }
-  );
-
+    );
   }
 }
