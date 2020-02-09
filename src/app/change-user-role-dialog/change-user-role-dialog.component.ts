@@ -12,6 +12,9 @@ export class ChangeUserRoleDialogComponent implements OnInit {
   getUserForm: FormGroup;
   changeUserRoleForm: FormGroup;
   loadedUser: User;
+  errorMessage: string;
+  loading = false;
+  outcomeMessage: string;
 
   roles= ["USER", "SUPERUSER", "ADMIN"];
   constructor(private formBuilder: FormBuilder, private userService: UserService) { 
@@ -28,27 +31,33 @@ export class ChangeUserRoleDialogComponent implements OnInit {
   }
 
   onSubmit(getUserData: FormGroup){
+    this.loading=true;
     this.userService.getUser(getUserData.get("email").value).subscribe(
         (response) => {
-          if(response.status === 200){
             let json: JSON = response.body;
-            this.loadedUser = json["data"];
-          } else {
-
-          }
+            this.loadedUser = json["data"]; 
+            this.errorMessage=null; 
+            this.loading=false;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }
 
   onSubmitUpdate(changeUserRoleData: FormGroup){
-    console.log(changeUserRoleData);
+    this.loading=true;
     this.userService.updateUserRole(this.loadedUser, changeUserRoleData.get("role").value).subscribe(
         (response) => {
-          if(response.status === 200){
-            let json: JSON = response.body;
-          } else {
-
-          }
+          this.outcomeMessage="User successfully updated"
+          this.loading=false;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }

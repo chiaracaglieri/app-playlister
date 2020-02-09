@@ -14,6 +14,34 @@ const headers = new HttpHeaders({
 })
 export class SongService {
 
+  genres= [	null,"A Capella",
+	"Alternative",
+	"Anime",
+	"Blues",
+	"Children's Music",
+	"Children’s Music",
+	"Classical",
+	"Comedy",
+	"Country",
+	"Dance",
+	"Electronic",
+	"Folk",
+	"Hip-Hop",
+	"Indie",
+	"Jazz",
+	"Movie",
+	"Opera",
+	"Pop",
+	"R&B",
+	"Rap",
+	"Reggae",
+	"Reggaeton",
+	"Rock",
+	"Ska",
+	"Soul",
+	"Soundtrack",
+  "World"];
+  
   baseUrl = "https://playlister-project.herokuapp.com/";
   constructor(private http: HttpClient, private userService: UserService) { }
 

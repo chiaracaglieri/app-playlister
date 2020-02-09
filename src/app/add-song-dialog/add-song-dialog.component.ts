@@ -9,8 +9,12 @@ import { Song } from '../shared/model/Song';
   styleUrls: ['./add-song-dialog.component.css']
 })
 export class AddSongDialogComponent implements OnInit {
+  errorMessage: string;
+  loading = false;
+  insertedSong: Song;
+
   addSongForm: FormGroup;
-  genres= [	"A Capella",
+  genres= [	null,"A Capella",
 	"Alternative",
 	"Anime",
 	"Blues",
@@ -70,13 +74,13 @@ export class AddSongDialogComponent implements OnInit {
   }
 
   onSubmit(addSongData: FormGroup){
-    console.log(addSongData);
+    this.loading=true;
 
     let song: Song = new Song();
     song.track_name=addSongData.get("track_name").value;
     song.artist_name=addSongData.get("artist_name").value;
     song.duration_ms=addSongData.get("duration_ms").value;
-    song.genre=addSongData.get("genre").value;
+    song.genre=addSongData.get("genre").value == "" ? null: addSongData.get("genre").value;
     song.acousticness=addSongData.get("acousticness").value;
     song.danceability=addSongData.get("danceability").value;
     song.energy=addSongData.get("energy").value;
@@ -89,11 +93,15 @@ export class AddSongDialogComponent implements OnInit {
 
     this.songService.createSong(song).subscribe(
         (response) => {
-          if(response.status === 201){
             let json: JSON = response.body;
-          } else {
-
-          }
+            this.insertedSong = json['data'];
+            this.loading=false;
+            this.errorMessage=null;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }
