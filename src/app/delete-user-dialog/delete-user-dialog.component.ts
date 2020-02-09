@@ -12,6 +12,9 @@ export class DeleteUserDialogComponent implements OnInit {
   getUserForm: FormGroup;
   deleteUserForm: FormGroup;
   loadedUser: User;
+  errorMessage: string;
+  loading = false;
+  outcomeMessage: string;
 
   email = new FormControl({ value: '', disabled: true });
   role = new FormControl({ value: '', disabled: true });
@@ -37,26 +40,34 @@ export class DeleteUserDialogComponent implements OnInit {
   }
 
   onSubmit(getUserData: FormGroup){
+    this.loading=true;
     this.userService.getUser(getUserData.get("email").value).subscribe(
         (response) => {
-          if(response.status === 200){
             let json: JSON = response.body;
-            this.loadedUser = json["data"];
-          } else {
-
-          }
+            this.loadedUser = json["data"]; 
+            this.errorMessage=null; 
+            this.loading=false;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }
 
   onSubmitDelete(deleteUserData: FormGroup){
+    this.loading=true;
     this.userService.deleteUser(deleteUserData.get("email").value).subscribe(
-        (response) => {
-          if(response.status === 200){
+        (response) => { 
             let json: JSON = response.body;
-          } else {
-
-          }
+            this.outcomeMessage="User successfully deleted."
+            this.loading=false;
+        },
+        (error) => {
+          let json: JSON = error.error;
+          this.errorMessage = json['message'];
+          this.loading=false;
         }
       );
   }
