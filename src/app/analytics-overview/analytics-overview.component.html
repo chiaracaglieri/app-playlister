@@ -2,72 +2,75 @@
     <div class="header">Popularity analytics</div>
     <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Top Artists
-            </mat-panel-title>
-            <mat-panel-description>
-              Get top artists within user and specify filters
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <span class="header">Top Artists</span><br>
-          <span class="sub-header">Filters:</span><br><br>
-          <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmitArtists(filterTopArtistsForm)">
-              <mat-form-field class="example-full-width">
-                  <mat-label>Country</mat-label>
-                  <mat-select formControlName="region">
-                      <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
-                          {{country.viewValue}}
-                      </mat-option>
-                  </mat-select>
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                  <mat-label>Gender</mat-label>
-                  <mat-select formControlName="gender">
-                      <mat-option *ngFor="let gender of genders" [value]="gender.displayedValue">
-                          {{gender.displayedValue}}
-                      </mat-option>
-                  </mat-select>
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                  <input matInput [matDatepicker]="pickerMinA" placeholder="Min Birthday" formControlName="minBirthday">
-                  <mat-datepicker-toggle matSuffix [for]="pickerMinA"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerMinA></mat-datepicker>
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                  <input matInput [matDatepicker]="pickerMaxA" placeholder="Max Birthday" formControlName="maxBirthday">
-                  <mat-datepicker-toggle matSuffix [for]="pickerMaxA"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerMaxA></mat-datepicker>
-              </mat-form-field>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Top Artists
+                </mat-panel-title>
+                <mat-panel-description>
+                    Get top artists within user and specify filters
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <span class="header">Top Artists</span><br>
+            <span class="sub-header">Filters:</span><br><br>
+            <form class="example-form" [formGroup]="filterTopArtistsForm" (ngSubmit)="onSubmitArtists(filterTopArtistsForm)">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="region">
+                        <mat-option *ngFor="let country of countries.regions" [value]="country.viewValue">
+                            {{country.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option *ngFor="let gender of genders" [value]="gender.displayedValue">
+                            {{gender.displayedValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="pickerMinA" placeholder="Min Birthday" formControlName="minBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerMinA"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerMinA></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="pickerMaxA" placeholder="Max Birthday" formControlName="maxBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerMaxA"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerMaxA></mat-datepicker>
+                </mat-form-field>
 
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Number of results" formControlName="limit" type="number" required>
-            </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Number of results" formControlName="limit" type="number" required>
+                </mat-form-field>
 
-              <div class="example-actions">
-                  <button mat-flat-button color="primary" type="submit">Apply</button>
-              </div>
-          </form>
+                <div class="example-actions">
+                    <button mat-flat-button color="primary" type="submit">Apply</button>
+                </div>
+            </form>
 
-          <div class="example-actions">
-            <button mat-button color="primary" (click)="clearSearchFields('filterTopArtistsForm')">Clear search fields</button>
-         </div>
+            <div class="example-actions">
+                <button mat-button color="primary" (click)="clearSearchFields('filterTopArtistsForm')">Clear search fields</button>
+            </div>
 
-      
-          <div *ngIf="artistResult!=[]">
-              <div *ngFor="let artist of artistResult">
-                  {{ artist }}
-              </div>
-          </div>
+            <div *ngIf="artistErrorMessage!=null" class="error-message">
+                Error: {{ artistErrorMessage }}
+            </div>
+
+            <div *ngIf="artistResult!=[]">
+                <div *ngFor="let artist of artistResult">
+                    {{ artist }}
+                </div>
+            </div>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                Top Songs
-              </mat-panel-title>
-              <mat-panel-description>
-                Get top songs within user and specify filters
-              </mat-panel-description>
+                <mat-panel-title>
+                    Top Songs
+                </mat-panel-title>
+                <mat-panel-description>
+                    Get top songs within user and specify filters
+                </mat-panel-description>
             </mat-expansion-panel-header>
             <span class="header">Top Songs</span><br>
             <span class="sub-header">Filters:</span><br><br>
@@ -107,26 +110,31 @@
                     <button mat-flat-button color="primary" type="submit">Apply</button>
                 </div>
             </form>
-        
+
             <div class="example-actions">
                 <button mat-button color="primary" (click)="clearSearchFields('filterTopSongsForm')">Clear search fields</button>
-             </div>
+            </div>
+
+            <div *ngIf="songErrorMessage!=null" class="error-message">
+                Error: {{ songErrorMessage }}
+            </div>
+
             <div *ngIf="songResult!=[]">
                 <div *ngFor="let song of songResult">
                     {{ song.track_name }}
                 </div>
             </div>
 
-          </mat-expansion-panel>
+        </mat-expansion-panel>
 
-          <mat-expansion-panel>
+        <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                Top Genres
-              </mat-panel-title>
-              <mat-panel-description>
-                Get top genres within user and specify filters
-              </mat-panel-description>
+                <mat-panel-title>
+                    Top Genres
+                </mat-panel-title>
+                <mat-panel-description>
+                    Get top genres within user and specify filters
+                </mat-panel-description>
             </mat-expansion-panel-header>
             <span class="header">Top Genres</span><br>
             <span class="sub-header">Filters:</span><br><br>
@@ -169,55 +177,58 @@
 
             <div class="example-actions">
                 <button mat-button color="primary" (click)="clearSearchFields('filterTopGenresForm')">Clear search fields</button>
-             </div>
+            </div>
 
+            <div *ngIf="genresErrorMessage!=null" class="error-message">
+                Error: {{ genresErrorMessage }}
+            </div>
             <div *ngIf="genreResult!=[]">
                 <div *ngFor="let genre of genreResult">
                     {{ genre }}
                 </div>
             </div>
 
-          </mat-expansion-panel>
-      </mat-accordion>
-      <br>
-      <hr>
-      <br>
-      <div class="header">Demographical analytics</div>
-      <mat-accordion>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <br>
+    <hr>
+    <br>
+    <div class="header">Demographical analytics</div>
+    <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Total number of users
-            </mat-panel-title>
-            <mat-panel-description>
-              Get the current total number of users of Playlister
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          Total number of users: {{ totalNumberOfUsers}}
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Total number of users
+                </mat-panel-title>
+                <mat-panel-description>
+                    Get the current total number of users of Playlister
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            Total number of users: {{ totalNumberOfUsers}}
         </mat-expansion-panel>
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                Most frequent gender
-              </mat-panel-title>
-              <mat-panel-description>
-                Get the most frequent gender within users of Playlister
-              </mat-panel-description>
+                <mat-panel-title>
+                    Most frequent gender
+                </mat-panel-title>
+                <mat-panel-description>
+                    Get the most frequent gender within users of Playlister
+                </mat-panel-description>
             </mat-expansion-panel-header>
             Most frequent gender: {{ mostFrequentGender}}
-          </mat-expansion-panel>
+        </mat-expansion-panel>
 
-          <mat-expansion-panel>
+        <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                Most frequent country
-              </mat-panel-title>
-              <mat-panel-description>
-                Get the most frequent country of origin within users of Playlister
-              </mat-panel-description>
+                <mat-panel-title>
+                    Most frequent country
+                </mat-panel-title>
+                <mat-panel-description>
+                    Get the most frequent country of origin within users of Playlister
+                </mat-panel-description>
             </mat-expansion-panel-header>
             Most frequent country: {{ mostFrequentRegion}}
-          </mat-expansion-panel>
-      </mat-accordion>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
