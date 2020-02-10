@@ -12,35 +12,7 @@ export class AddSongDialogComponent implements OnInit {
   errorMessage: string;
   loading = false;
   insertedSong: Song;
-
   addSongForm: FormGroup;
-  genres= [	null,"A Capella",
-	"Alternative",
-	"Anime",
-	"Blues",
-	"Children's Music",
-	"Children’s Music",
-	"Classical",
-	"Comedy",
-	"Country",
-	"Dance",
-	"Electronic",
-	"Folk",
-	"Hip-Hop",
-	"Indie",
-	"Jazz",
-	"Movie",
-	"Opera",
-	"Pop",
-	"R&B",
-	"Rap",
-	"Reggae",
-	"Reggaeton",
-	"Rock",
-	"Ska",
-	"Soul",
-	"Soundtrack",
-  "World"];
   
   acousticness = new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]);
   danceability = new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]);
@@ -52,7 +24,7 @@ export class AddSongDialogComponent implements OnInit {
   tempo = new FormControl('', [Validators.required, Validators.min(0), Validators.max(300)]);
   valence = new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]);
 
-  constructor(private formBuilder: FormBuilder, private songService: SongService) {
+  constructor(private formBuilder: FormBuilder, public songService: SongService) {
     this.addSongForm = this.formBuilder.group({
       track_name: '',
       artist_name: '',

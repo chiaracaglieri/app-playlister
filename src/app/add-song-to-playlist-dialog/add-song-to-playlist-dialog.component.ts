@@ -32,33 +32,6 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
 
   loading=false;
 
-  genres= [	"A Capella",
-	"Alternative",
-	"Anime",
-	"Blues",
-	"Children's Music",
-	"Classical",
-	"Comedy",
-	"Country",
-	"Dance",
-	"Electronic",
-	"Folk",
-	"Hip-Hop",
-	"Indie",
-	"Jazz",
-	"Movie",
-	"Opera",
-	"Pop",
-	"R&B",
-	"Rap",
-	"Reggae",
-	"Reggaeton",
-	"Rock",
-	"Ska",
-	"Soul",
-	"Soundtrack",
-  "World"];
-
   addSongForm: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder,

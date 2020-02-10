@@ -19,33 +19,6 @@ export class BrowseOverviewComponent implements OnInit {
   loading=false;
   showSearchError = false;
   loadedSongs: Song[];
-
-  genres= [	"A Capella",
-	"Alternative",
-	"Anime",
-	"Blues",
-	"Children's Music",
-	"Classical",
-	"Comedy",
-	"Country",
-	"Dance",
-	"Electronic",
-	"Folk",
-	"Hip-Hop",
-	"Indie",
-	"Jazz",
-	"Movie",
-	"Opera",
-	"Pop",
-	"R&B",
-	"Rap",
-	"Reggae",
-	"Reggaeton",
-	"Rock",
-	"Ska",
-	"Soul",
-	"Soundtrack",
-  "World"];
   
   constructor(private formBuilder: FormBuilder, public songService: SongService,
     public dialog: MatDialog, public userService: UserService) { 
