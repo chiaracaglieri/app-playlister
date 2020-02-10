@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component} from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -6,19 +6,15 @@ import { EditAccountDialogComponent } from '../edit-account-dialog/edit-account-
 import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
 import { DeleteAccountAlertComponent } from '../delete-account-alert/delete-account-alert.component';
 import { PlaylistService } from '../playlist.service';
-import { User } from '../shared/model/User';
 
 @Component({
   selector: 'app-account-overview',
   templateUrl: './account-overview.component.html',
   styleUrls: ['./account-overview.component.css']
 })
-export class AccountOverviewComponent implements OnInit{
+export class AccountOverviewComponent{
 
   constructor(public userService: UserService, public playlistService: PlaylistService,private router: Router, public dialog: MatDialog) { 
-  }
-
-  ngOnInit() {
   }
 
   logOut(){
@@ -45,5 +41,4 @@ export class AccountOverviewComponent implements OnInit{
       width: '400px'
     });
   }
-  
 }

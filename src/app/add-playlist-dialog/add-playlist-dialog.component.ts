@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -9,19 +9,17 @@ import { PlaylistService } from '../playlist.service';
   templateUrl: './add-playlist-dialog.component.html',
   styleUrls: ['./add-playlist-dialog.component.css']
 })
-export class AddPlaylistDialogComponent implements OnInit {
-  addPlaylistForm: FormGroup ;
-  errorMessage: string;
-  loading = false;
+export class AddPlaylistDialogComponent{
+  addPlaylistForm: FormGroup;
   playlistCreated = false;
 
-  constructor(private router: Router,private formBuilder: FormBuilder, private playlistService: PlaylistService, private userService: UserService) { 
+  errorMessage: string;
+  loading = false;
+  
+  constructor(private formBuilder: FormBuilder, private playlistService: PlaylistService, private userService: UserService) { 
     this.addPlaylistForm = this.formBuilder.group({
       name: ''
     });
-  }
-
-  ngOnInit() {
   }
 
   onSubmit(addPlaylistData: FormGroup ){

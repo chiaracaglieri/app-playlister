@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SongService } from '../song.service';
 import { Song } from '../shared/model/Song';
@@ -8,9 +8,10 @@ import { Song } from '../shared/model/Song';
   templateUrl: './add-song-dialog.component.html',
   styleUrls: ['./add-song-dialog.component.css']
 })
-export class AddSongDialogComponent implements OnInit {
+export class AddSongDialogComponent{
   errorMessage: string;
   loading = false;
+
   insertedSong: Song;
   addSongForm: FormGroup;
   
@@ -41,9 +42,6 @@ export class AddSongDialogComponent implements OnInit {
       valence: this.valence
     });
    }
-
-  ngOnInit() {
-  }
 
   onSubmit(addSongData: FormGroup){
     this.loading=true;

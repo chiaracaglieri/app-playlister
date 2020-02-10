@@ -1,10 +1,9 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Playlist } from '../shared/model/Playlist';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SongService } from '../song.service';
 import { Song } from '../shared/model/Song';
-import { User } from '../shared/model/User';
 import { UserService } from '../user.service';
 import { PlaylistService } from '../playlist.service';
 
@@ -14,7 +13,7 @@ import { PlaylistService } from '../playlist.service';
   templateUrl: './add-song-to-playlist-dialog.component.html',
   styleUrls: ['./add-song-to-playlist-dialog.component.css']
 })
-export class AddSongToPlaylistDialogComponent implements OnInit {
+export class AddSongToPlaylistDialogComponent {
 
   displayedColumns: string[] = ['Song', 'Artist', 'Genre', 'Duration', 'Symbol'];
   SONG_DATA: Song[];
@@ -22,9 +21,6 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  ngOnInit() {
-  }
-  
   playlist: Playlist;
   showSearchError = false;
 
@@ -45,7 +41,6 @@ export class AddSongToPlaylistDialogComponent implements OnInit {
       genre: ''
     });
   }
-
 
   onSubmit(addSongData: FormGroup){
     this.loading=true;
