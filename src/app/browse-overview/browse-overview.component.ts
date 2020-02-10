@@ -25,7 +25,6 @@ export class BrowseOverviewComponent implements OnInit {
 	"Anime",
 	"Blues",
 	"Children's Music",
-	"Children’s Music",
 	"Classical",
 	"Comedy",
 	"Country",

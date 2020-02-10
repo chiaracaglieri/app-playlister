@@ -19,7 +19,6 @@ export class SongService {
 	"Anime",
 	"Blues",
 	"Children's Music",
-	"Children’s Music",
 	"Classical",
 	"Comedy",
 	"Country",
