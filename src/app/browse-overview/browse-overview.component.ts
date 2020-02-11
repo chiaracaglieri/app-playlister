@@ -29,7 +29,7 @@ export class BrowseOverviewComponent implements OnInit {
         artist_name: '',
         genre: ''
       });
-    this.songService.getSongsSuggestions(10,20).subscribe(
+    this.songService.getSongsSuggestions(10,70).subscribe(
       (response) => {
         let json: JSON = response.body;
         this.suggestedSongsList = json['data'];
