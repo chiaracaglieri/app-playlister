@@ -13,7 +13,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Genre</mat-label>
                 <mat-select formControlName="genre">
-                    <mat-option *ngFor="let genre of genres" [value]="genre">
+                    <mat-option *ngFor="let genre of this.songService.genres" [value]="genre">
                         {{genre}}
                     </mat-option>
                 </mat-select>

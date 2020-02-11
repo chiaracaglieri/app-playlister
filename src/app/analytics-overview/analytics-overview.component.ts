@@ -23,6 +23,10 @@ export class AnalyticsOverviewComponent implements OnInit {
   mostFrequentGender: string;
   mostFrequentRegion: string;
 
+  artistErrorMessage: string;
+  songErrorMessage: string;
+  genreErrorMessage: string;
+
   genders = [ 
     {value:"FEMALE", displayedValue:"Female"}, 
     {value:"MALE", displayedValue:"Male" }, 
@@ -88,12 +92,13 @@ export class AnalyticsOverviewComponent implements OnInit {
 
     this.playlistService.getTopArtists(limit, minBirthday, maxBirthday, gender, region).subscribe(
       (response) => {
-        if(response.status === 200){
           let json: JSON = response.body;
           this.artistResult=json["data"];
-        } else {
-
-        }
+          this.artistErrorMessage=null;
+      },
+      (error)=>{
+        let json: JSON = error.error;
+        this.artistErrorMessage = json['message'];
       }
     );
 
@@ -108,12 +113,13 @@ export class AnalyticsOverviewComponent implements OnInit {
 
     this.playlistService.getTopSongs(limit, minBirthday, maxBirthday, gender, region).subscribe(
       (response) => {
-        if(response.status === 200){
           let json: JSON = response.body;
           this.songResult=json["data"];
-        } else {
-
-        }
+          this.songErrorMessage=null;
+      },
+      (error)=>{
+        let json: JSON = error.error;
+        this.songErrorMessage = json['message'];
       }
     );
 
@@ -128,12 +134,13 @@ export class AnalyticsOverviewComponent implements OnInit {
 
     this.playlistService.getTopGenres(limit, minBirthday, maxBirthday, gender, region).subscribe(
       (response) => {
-        if(response.status === 200){
           let json: JSON = response.body;
           this.genreResult=json["data"];
-        } else {
-
-        }
+          this.genreErrorMessage=null;
+      },
+      (error)=>{
+        let json: JSON = error.error;
+        this.genreErrorMessage = json['message'];
       }
     );
   }
@@ -141,12 +148,15 @@ export class AnalyticsOverviewComponent implements OnInit {
   clearSearchFields(formName: string){
     if(formName=="filterTopArtistsForm"){
       this.filterTopArtistsForm.reset();
+      this.artistErrorMessage=null;
     }
     else if(formName=="filterTopSongsForm"){
       this.filterTopSongsForm.reset();
+      this.songErrorMessage=null;
     }
     else if(formName=="filterTopGenresForm"){
       this.filterTopGenresForm.reset();
+      this.genreErrorMessage=null;
     }
   }
 }

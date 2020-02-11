@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SongService } from '../song.service';
 import { Song } from '../shared/model/Song';
@@ -8,39 +8,12 @@ import { Song } from '../shared/model/Song';
   templateUrl: './add-song-dialog.component.html',
   styleUrls: ['./add-song-dialog.component.css']
 })
-export class AddSongDialogComponent implements OnInit {
+export class AddSongDialogComponent{
   errorMessage: string;
   loading = false;
-  insertedSong: Song;
 
+  insertedSong: Song;
   addSongForm: FormGroup;
-  genres= [	null,"A Capella",
-	"Alternative",
-	"Anime",
-	"Blues",
-	"Children's Music",
-	"Children’s Music",
-	"Classical",
-	"Comedy",
-	"Country",
-	"Dance",
-	"Electronic",
-	"Folk",
-	"Hip-Hop",
-	"Indie",
-	"Jazz",
-	"Movie",
-	"Opera",
-	"Pop",
-	"R&B",
-	"Rap",
-	"Reggae",
-	"Reggaeton",
-	"Rock",
-	"Ska",
-	"Soul",
-	"Soundtrack",
-  "World"];
   
   acousticness = new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]);
   danceability = new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]);
@@ -52,7 +25,7 @@ export class AddSongDialogComponent implements OnInit {
   tempo = new FormControl('', [Validators.required, Validators.min(0), Validators.max(300)]);
   valence = new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]);
 
-  constructor(private formBuilder: FormBuilder, private songService: SongService) {
+  constructor(private formBuilder: FormBuilder, public songService: SongService) {
     this.addSongForm = this.formBuilder.group({
       track_name: '',
       artist_name: '',
@@ -69,9 +42,6 @@ export class AddSongDialogComponent implements OnInit {
       valence: this.valence
     });
    }
-
-  ngOnInit() {
-  }
 
   onSubmit(addSongData: FormGroup){
     this.loading=true;

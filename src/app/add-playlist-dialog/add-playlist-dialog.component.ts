@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -9,33 +9,37 @@ import { PlaylistService } from '../playlist.service';
   templateUrl: './add-playlist-dialog.component.html',
   styleUrls: ['./add-playlist-dialog.component.css']
 })
-export class AddPlaylistDialogComponent implements OnInit {
-  addPlaylistForm: FormGroup ;
+export class AddPlaylistDialogComponent{
+  addPlaylistForm: FormGroup;
+  playlistCreated = false;
 
-  constructor(private router: Router,private formBuilder: FormBuilder, private playlistService: PlaylistService, private userService: UserService) { 
+  errorMessage: string;
+  loading = false;
+  
+  constructor(private formBuilder: FormBuilder, private playlistService: PlaylistService, private userService: UserService) { 
     this.addPlaylistForm = this.formBuilder.group({
       name: ''
     });
   }
 
-  ngOnInit() {
-  }
-
   onSubmit(addPlaylistData: FormGroup ){
-    
+    this.loading = true;
+
     this.playlistService.createPlaylist(addPlaylistData.get("name").value).subscribe(
       (response) => {
         this.userService.getUser(this.userService.loggedUser.email).subscribe(
           (response) => {
-            if(response.status === 200){
               let json: JSON = response.body;
               this.userService.loggedUser = json['data'];
-            }
-            else{
-    
-            }
           }
          );
+         this.loading=false;
+         this.playlistCreated=true;
+      },
+      (error) => {
+        let json: JSON = error.error;
+        this.errorMessage = json['message'];
+        this.loading=false;
       }
     );
 

@@ -11,15 +11,6 @@ import { AddSongToPlaylistDialogComponent } from '../add-song-to-playlist-dialog
 import { SongService } from '../song.service';
 import { UserService } from '../user.service';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-
-
 @Component({
   selector: 'app-playlist-detail',
   templateUrl: './playlist-detail.component.html',

@@ -13,46 +13,37 @@
         <mat-form-field class="example-full-width">
             <mat-label>Genre</mat-label>
             <mat-select formControlName="genre">
-                <mat-option *ngFor="let genre of genres" [value]="genre">
+                <mat-option *ngFor="let genre of this.songService.genres" [value]="genre">
                     {{genre}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Acousticness" step="0.01" min="0" max="1" type="number"
-                [formControl]="acousticness" required>
+            <input matInput placeholder="Acousticness" step="0.01" min="0" max="1" type="number" [formControl]="acousticness" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Danceability" step="0.01" min="0" max="1" type="number"
-                [formControl]="danceability" required>
+            <input matInput placeholder="Danceability" step="0.01" min="0" max="1" type="number" [formControl]="danceability" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Energy" step="0.01" min="0" max="1" type="number" [formControl]="energy"
-                required>
+            <input matInput placeholder="Energy" step="0.01" min="0" max="1" type="number" [formControl]="energy" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Instrumentalness" step="0.01" min="0" max="1" type="number"
-                [formControl]="instrumentalness" required>
+            <input matInput placeholder="Instrumentalness" step="0.01" min="0" max="1" type="number" [formControl]="instrumentalness" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Liveness" step="0.01" min="0" max="1" type="number" [formControl]="liveness"
-                required>
+            <input matInput placeholder="Liveness" step="0.01" min="0" max="1" type="number" [formControl]="liveness" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Loudness" step="0.01" min="-100" max="100" type="number"
-                [formControl]="loudness" required>
+            <input matInput placeholder="Loudness" step="0.01" min="-100" max="100" type="number" [formControl]="loudness" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Speechiness" step="0.01" min="0" max="1" type="number"
-                [formControl]="speechiness" required>
+            <input matInput placeholder="Speechiness" step="0.01" min="0" max="1" type="number" [formControl]="speechiness" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Tempo" step="0.01" min="0" max="300" type="number" [formControl]="tempo"
-                required>
+            <input matInput placeholder="Tempo" step="0.01" min="0" max="300" type="number" [formControl]="tempo" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Valence" step="0.01" min="0" max="1" type="number" [formControl]="valence"
-                required>
+            <input matInput placeholder="Valence" step="0.01" min="0" max="1" type="number" [formControl]="valence" required>
         </mat-form-field>
         <div class="example-actions">
             <button mat-flat-button color="primary" type="submit" [disabled]="addSongForm.invalid">Add</button>
