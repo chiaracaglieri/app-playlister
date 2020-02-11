@@ -179,8 +179,8 @@
                 <button mat-button color="primary" (click)="clearSearchFields('filterTopGenresForm')">Clear search fields</button>
             </div>
 
-            <div *ngIf="genresErrorMessage!=null" class="error-message">
-                Error: {{ genresErrorMessage }}
+            <div *ngIf="genreErrorMessage!=null" class="error-message">
+                Error: {{ genreErrorMessage }}
             </div>
             <div *ngIf="genreResult!=[]">
                 <div *ngFor="let genre of genreResult">
