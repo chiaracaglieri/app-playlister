@@ -59,6 +59,7 @@ export class AddSongToPlaylistDialogComponent {
           this.dataSource = new MatTableDataSource(this.SONG_DATA);
           this.dataSource.paginator = this.paginator;
           this.loading=false;
+          this.showSearchError=false;
         },
         (error) => {
           this.showSearchError = true;
