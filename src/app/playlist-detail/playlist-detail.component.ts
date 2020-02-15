@@ -46,6 +46,12 @@ export class PlaylistDetailComponent implements OnInit {
   }
 
   goBack() {
+    this.playlistService.getMostPopularArtist().subscribe(
+      (response) => {
+        let json: JSON = response.body;
+        this.playlistService.topArtist = json['data'];
+      }
+    );
     this.playlistService.isPlaylistOverview = true;
   }
 
