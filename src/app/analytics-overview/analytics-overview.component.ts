@@ -4,6 +4,7 @@ import { Region } from '../shared/model/Region';
 import { PlaylistService } from '../playlist.service';
 import { DatePipe } from '@angular/common';
 import { UserService } from '../user.service';
+import { Song } from '../shared/model/Song';
 
 @Component({
   selector: 'app-analytics-overview',
@@ -17,7 +18,7 @@ export class AnalyticsOverviewComponent implements OnInit {
 
   artistResult: string[];
   genreResult: string[];
-  songResult: { "track_name": string }[];
+  songResult: Song[];
 
   totalNumberOfUsers: number;
   mostFrequentGender: string;
