@@ -16,6 +16,7 @@ export class PlaylistService {
   isPlaylistOverview= true;
   selectedPlaylistName: string;
   SONG_DATA: Song[];
+  topArtist: string;
   dataSource;
   
   baseUrl = "https://playlister-project.herokuapp.com/";

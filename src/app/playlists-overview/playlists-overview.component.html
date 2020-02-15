@@ -21,7 +21,7 @@
         </mat-grid-list>
         <span class="sub-header" *ngIf="userService.loggedUser.playlists == null || userService.loggedUser.playlists[0] == null"> You don't have any playlists, yet.
             Create one with the button on the right! </span>
-        <span class="header" *ngIf="topArtist!=null"> Your most listened to artist is: {{ getTopArtist() }} </span>
+        <span class="header" *ngIf="playlistService.topArtist!=null"> Your most listened to artist is: {{ playlistService.topArtist }} </span>
         <div class="fab-container">
             <button mat-fab color="primary" (click)="openAddPlaylistDialog()">
                 <mat-icon>add</mat-icon>
