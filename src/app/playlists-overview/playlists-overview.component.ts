@@ -26,7 +26,6 @@ export class PlaylistsOverviewComponent implements OnInit {
         this.loading = false;
       }
     );
-    
   }
 
   ngOnInit() {

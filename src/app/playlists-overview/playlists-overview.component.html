@@ -10,8 +10,9 @@
                         {{playlist.name}}
                     </mat-card-title>
                     <mat-card-content>
-                        <span *ngFor="let song of playlist.songs">{{ song.track_name }} -
+                        <span *ngFor="let song of playlist.songs.slice(0,2)">{{ song.track_name }} -
                             {{ song.artist_name }}<br></span>
+                        ...
                     </mat-card-content>
                     <mat-card-actions style="float:right">
                         <mat-icon aria-hidden="false" aria-label="Example home icon">play_arrow</mat-icon>
